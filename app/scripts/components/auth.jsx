@@ -1,7 +1,7 @@
 var $ = require('jquery');
 var React = require('react');
 
-var BaseLayout = require('../../layouts/baselayout.jsx').BaseLayout;
+// var BaseLayout = require('../../layouts/baselayout.jsx').BaseLayout;
 
 var serverUrl = 'https://futbol-finder.herokuapp.com';
 
@@ -34,13 +34,15 @@ class AuthContainer extends React.Component {
 
     $.get(url).then(function(data){
       localStorage.setItem('userToken', data.sessionToken);
-      self.props.navigate('#home', {trigger: true});
+      self.props.navigate('#/home', {trigger: true});
     });
   }
 
   render(){
     //
     return (
+    <div>
+      <AuthHeader />
 
         <div className="container">
           <div className="row">
@@ -66,6 +68,7 @@ class AuthContainer extends React.Component {
            </div>
          </div>
        </div>
+     </div>
     )
   }
 };
@@ -107,6 +110,34 @@ class SignUp extends React.Component {
     )
   }
 
+};
+
+class AuthHeader extends React.Component {
+  render(){
+    return(
+      <div className="auth-header">
+        <nav className="navbar navbar-default" role="navigation" id="header-nav">
+            <div className="container">
+  		    <div className="navbar-header">
+  		      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+  		        <span className="sr-only">Toggle navigation</span>
+  		        <span className="icon-bar"></span>
+  		        <span className="icon-bar"></span>
+  		        <span className="icon-bar"></span>
+  		      </button>
+  		      <a className="navbar-brand navbar-brand-centered" href="#">_Futbol Finder</a>
+  		    </div>
+
+  		    <div className="collapse navbar-collapse" id="navbar-brand-centered">
+  		      <ul className="nav navbar-nav navbar-right">
+  		        <li><a href="#/auth">Contact Us</a></li>
+  		      </ul>
+  		    </div>
+  		  </div>
+  		</nav>
+    </div>
+    )
+  }
 };
 
 

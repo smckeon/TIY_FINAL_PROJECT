@@ -4,15 +4,16 @@ var ReactDOM = require('react-dom');
 
 
 var AuthContainer = require('../scripts/components/auth.jsx').AuthContainer;
-var WelcomeContainer = require('../scripts/components/user_welcome.jsx').WelcomeContainer;
+var WelcomeContainer = require('../scripts/components/user_home.jsx').WelcomeContainer;
 var HomeContainer = require('../scripts/components/home.jsx').HomeContainer;
+var AccountInfoContainer = require('../scripts/components/account_info.jsx').AccountInfoContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'auth': 'auth',
     'home': 'userHome',
-    'account': 'account',
+    'account': 'accountInfo',
     'create': 'createMeetup',
     'games': 'gamesListing',
   },
@@ -37,8 +38,11 @@ var AppRouter = Backbone.Router.extend({
     )
   },
 
-  account(){
-
+  accountInfo(){
+    ReactDOM.render(
+      React.createElement(AccountInfoContainer),
+      document.getElementById('app')
+    )
   },
 
   createMeetup(){
