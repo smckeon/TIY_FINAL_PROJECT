@@ -9,7 +9,7 @@ class AccountInfoContainer extends React.Component {
         <div className="container">
           <div className="row">
 
-            <form className="form-horizontal">
+            <form className="form-horizontal" encType="multipart/form-data">
               <fieldset>
 
                 <legend>Account Information</legend>
@@ -140,6 +140,7 @@ class ImageUploadModal extends React.Component {
                   </div>
                   <div className="col-sm-12 col-md-9">
                       <h1>Name / Username</h1>
+                      <input type="file" />
                       <span>Please upload a new picture.</span>
                   </div>
                   {/*<div style="clear:both;"></div>*/}
