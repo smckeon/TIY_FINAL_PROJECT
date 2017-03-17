@@ -64,7 +64,7 @@ class AccountInfoContainer extends React.Component {
 
                   <div className="col-md-2">
 
-                    <ImageUploadModal handleImage={this.handleImage}/>
+                    <ImageUpload handleImage={this.handleImage}/>
 
 	                </div>
 
@@ -124,7 +124,7 @@ class AccountInputFields extends React.Component {
       <div className="control-group">
         <label className="control-label" htmlFor="number">Phone Number</label>
         <div className="controls">
-          <input id="number" name="number" type="text" placeholder="" className="input-xlarge" required="" value={this.state.number} onChange={this.handleNumber}/>
+          <input id="number" name="number" type="text" placeholder="USER NUMBER TO POPULATE" className="input-xlarge" required="" value={this.state.number} onChange={this.handleNumber}/>
 
         </div>
       </div>
@@ -134,7 +134,7 @@ class AccountInputFields extends React.Component {
     <div className="control-group">
       <label className="control-label" htmlFor="button1id"></label>
       <div className="controls">
-        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Save</button>
+        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
       </div>
     </div>
@@ -143,7 +143,7 @@ class AccountInputFields extends React.Component {
   }
 };
 
-class ImageUploadModal extends React.Component {
+class ImageUpload extends React.Component {
   constructor(props){
     super(props);
 

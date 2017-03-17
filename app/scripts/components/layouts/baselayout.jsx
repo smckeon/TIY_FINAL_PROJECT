@@ -47,7 +47,7 @@ class SignupNavItem extends React.Component{
   render(){
     return(
       <a href="#/auth" className="btn btn-primary signup-btn" role="button">
-        Signup
+        Login | Signup
       </a>
     )
   }

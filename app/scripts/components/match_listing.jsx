@@ -9,27 +9,17 @@ class MatchListing extends React.Component {
           <div className="game-template col-md-4">
             <div className="thumbnail">
               <MatchListingModal />
-              <div className="caption">
-                <h3>Date and Time</h3>
-                <h3>Address</h3>
+              <div className="caption text-center">
+                <h5>Date and Time</h5>
+                <h5>Address</h5>
                 <p>Game Description</p>
 
-                <div className="btn-group">
-                  <input type="integer" className="form-control" placeholder="Guests?" />
-                  <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Attending? <span className="caret"></span>
-                  </button>
-                  <ul className="dropdown-menu">
-                    <li><a href="#">Going</a></li>
-                    <li><a href="#">Not Going</a></li>
-                    <li><a href="#">Maybe</a></li>
-                  </ul>
-                  <a href="#/home" className="btn btn-primary" role="button">Submit</a>
+                  <a href="#/home" className="btn btn-success text-right" role="button">Going!</a>
                 </div>
               </div>
             </div>
           </div>
-        <div className="row" />
+        <div className="row">
       </div>
     </div>
     )
@@ -41,6 +31,7 @@ class MatchListingModal extends React.Component{
     return(
 <div>
       <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src="http://placehold.it/250x250/" /></a>
+      <p className="text-center">Click on image to view who's going!</p>
 
       <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div className="modal-dialog modal-md">
@@ -54,7 +45,7 @@ class MatchListingModal extends React.Component{
                         <li>Listing of attending players by username.</li>
                       </ul>
                   </div>
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal">X</button>
               </div>
           </div>
       </div>
