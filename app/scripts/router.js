@@ -9,6 +9,8 @@ var HomeContainer = require('../scripts/components/home.jsx');
 var AccountInfoContainer = require('../scripts/components/account_info.jsx');
 var CreateMatch = require('../scripts/components/create_match.jsx');
 
+var User = require('./models/user').User;
+
 var parse = require('./parse');
 
 var AppRouter = Backbone.Router.extend({
@@ -21,9 +23,19 @@ var AppRouter = Backbone.Router.extend({
     'games': 'gamesListing',
   },
   initialize: function(){
-   parse.setup({
-     BASE_API_URL: 'https://futbol-finder.herokuapp.com'
-   });
+   var user = User.currentUser();
+
+   if(user){
+     parse.setup({
+       sessionId: user.get('sessionToken'),
+       BASE_API_URL: 'https://futbol-finder.herokuapp.com'
+     });
+   } else {
+     parse.setup({
+       BASE_API_URL: 'https://futbol-finder.herokuapp.com'
+     });
+   }
+
  },
   index(){
     ReactDOM.render(

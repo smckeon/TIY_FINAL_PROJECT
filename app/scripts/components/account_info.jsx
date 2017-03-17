@@ -43,6 +43,7 @@ class AccountInfoContainer extends React.Component {
       data: pic
     }).then((response)=>{
       var imageUrl = response.url;
+      console.log(imageUrl);
       this.state.user.set({'imageUrl': imageUrl});
     });
 
