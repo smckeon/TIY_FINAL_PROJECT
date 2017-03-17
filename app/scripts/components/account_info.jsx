@@ -90,9 +90,12 @@ class AccountInputFields extends React.Component {
   constructor(props){
     super(props);
 
+    var user = User.currentUser();
+    // console.log('user', user);
+
     this.state = {
-      name: null,
-      number: null
+      name: user.get('name') || null,
+      number: user.get('number') || null
     }
 
     this.handleName = this.handleName.bind(this);
@@ -128,7 +131,6 @@ class AccountInputFields extends React.Component {
 
         </div>
       </div>
-
 
 
     <div className="control-group">
