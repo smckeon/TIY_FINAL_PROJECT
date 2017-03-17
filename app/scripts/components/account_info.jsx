@@ -1,11 +1,12 @@
 var React = require('react');
 
+var BaseLayout = require('./layouts/baselayout.jsx');
+
 class AccountInfoContainer extends React.Component {
 
   render(){
     return (
-      <div>
-      <AccountHeader />
+      <BaseLayout>
         <div className="container">
           <div className="row">
 
@@ -20,7 +21,7 @@ class AccountInfoContainer extends React.Component {
 
 	                </div>
 
-                  <div className="col-md-4">
+                  <div className="col-md-3">
 
                     <AccountInputFields />
 
@@ -31,49 +32,18 @@ class AccountInfoContainer extends React.Component {
 
         	</div>
         </div>
-      </div>
+      </BaseLayout>
     )
   }
 };
 
 
-class AccountHeader extends React.Component {
-
-  render(){
-    return(
-    <nav className="navbar navbar-default" role="navigation">
-      <div className="container">
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <a className="navbar-brand navbar-brand-centered" href="#">_Futbol Finder</a>
-        </div>
-
-        <div className="collapse navbar-collapse" id="navbar-brand-centered">
-          <ul className="nav navbar-nav navbar-right">
-            <li><a href="#/auth">Contact Us</a></li>
-            <li><a href="#">Signout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    )
-  }
-}
-
-module.exports = {
-  AccountInfoContainer
-}
 
 class AccountInputFields extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="well">
       <div className="control-group">
         <label className="control-label" htmlFor="email">Name</label>
         <div className="controls">
@@ -152,3 +122,5 @@ class ImageUploadModal extends React.Component {
   }
 
 };
+
+module.exports = AccountInfoContainer;

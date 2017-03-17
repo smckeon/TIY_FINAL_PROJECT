@@ -3,10 +3,13 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 
-var AuthContainer = require('../scripts/components/auth.jsx').AuthContainer;
-var WelcomeContainer = require('../scripts/components/user_home.jsx').WelcomeContainer;
-var HomeContainer = require('../scripts/components/home.jsx').HomeContainer;
-var AccountInfoContainer = require('../scripts/components/account_info.jsx').AccountInfoContainer;
+var AuthContainer = require('../scripts/components/auth.jsx');
+var WelcomeContainer = require('../scripts/components/user_home.jsx');
+var HomeContainer = require('../scripts/components/home.jsx');
+var AccountInfoContainer = require('../scripts/components/account_info.jsx');
+var CreateMatch = require('../scripts/components/create_match.jsx');
+
+var parse = require('./parse');
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -14,9 +17,14 @@ var AppRouter = Backbone.Router.extend({
     'auth': 'auth',
     'home': 'userHome',
     'account': 'accountInfo',
-    'create': 'createMeetup',
+    'create': 'createMatch',
     'games': 'gamesListing',
   },
+  initialize: function(){
+   parse.setup({
+     BASE_API_URL: 'https://futbol-finder.herokuapp.com'
+   });
+ },
   index(){
     ReactDOM.render(
       React.createElement(HomeContainer),
@@ -45,8 +53,11 @@ var AppRouter = Backbone.Router.extend({
     )
   },
 
-  createMeetup(){
-
+  createMatch(){
+    ReactDOM.render(
+      React.createElement(CreateMatch),
+      document.getElementById('app')
+    )
   },
 
   gamesListing(){

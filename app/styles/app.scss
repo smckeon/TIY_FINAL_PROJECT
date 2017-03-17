@@ -16,6 +16,15 @@ img {
   max-width: 100%;
 }
 
-.bio-modal {
-  padding:15px;
+
+// Base Layout
+
+.footer-nav {
+  display: flex;
+ list-style-type: none;
+}
+
+.signup-btn {
+  position: relative;
+  top: 8px;
 }

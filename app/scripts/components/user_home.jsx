@@ -1,7 +1,9 @@
 var $ = require('jquery');
 var React = require('react');
 
-// var BaseLayout = require('../layouts/baselayout.jsx');
+var BaseLayout = require('./layouts/baselayout.jsx');
+var MatchListing = require('./match_listing.jsx');
+var User = require('../models/user').User;
 
 var API_KEY = require('.././api_key').API_KEY;
 // ^^ ? Hiding API KEY
@@ -18,14 +20,21 @@ class WelcomeContainer extends React.Component {
   }
   render(){
     return(
-      <div>
-        <h1>You have arrived at the user welcome/home page</h1>
-      </div>
+    <BaseLayout>
+
+          <div className="container">
+          <div className="well">
+            <h2>Match Browser for {User.currentUser().get('username')} </h2>
+            <h4>Current games are listed below. If no games are listed, create one!</h4>
+          </div>
+        </div>
+
+        <MatchListing />
+
+    </BaseLayout>
     )
   }
-
 };
 
-module.exports = {
-  WelcomeContainer
-}
+
+module.exports = WelcomeContainer;
