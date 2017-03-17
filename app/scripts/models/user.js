@@ -24,6 +24,12 @@ var User = Backbone.Model.extend({
       callback(newUser);
     });
   },
+  logout: function(){
+    var url = parse.BASE_API_URL + '/logout';
+    $.post(url).then(event=>{
+      console.log('parse user logged out');
+    })
+  },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },

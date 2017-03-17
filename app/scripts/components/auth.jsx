@@ -21,8 +21,10 @@ class AuthContainer extends React.Component {
     });
   }
   createNewAccount(credentials){
+    console.log(credentials);
     var user = new User(credentials);
     user.save().then(function(data){
+      data.username = credentials.username;
       localStorage.setItem('user', JSON.stringify(data));
       Backbone.history.navigate('/home', {trigger: true});
     });
