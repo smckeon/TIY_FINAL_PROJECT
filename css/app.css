@@ -5766,13 +5766,50 @@ button.close {
 img {
   max-width: 100%; }
 
+* {
+  font-family: "Open Sans", sans-serif; }
+
+legend {
+  color: white; }
+
+#nav-dropdown {
+  color: white; }
+
+#header-nav {
+  margin-bottom: 0px;
+  border: none;
+  background-color: #2A3914; }
+
 .footer-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  list-style-type: none; }
+  list-style-type: none;
+  position: absolute;
+  right: 0;
+  bottom: -1;
+  left: 0;
+  padding: 1rem;
+  background-color: #6a7a67;
+  text-align: center; }
 
 .signup-btn {
   position: relative;
   top: 8px; }
+
+.homebg {
+  position: absolute;
+  z-index: -1; }
+
+.about_us {
+  font-family: "Open Sans", sans-serif;
+  color: #d0cac6;
+  font-size: 16px; }
+
+.auth_contain {
+  padding-top: 10%; }
+
+.user_home {
+  margin-top: 20px; }
+
 /*# sourceMappingURL=app.css.map */
