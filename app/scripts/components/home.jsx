@@ -6,6 +6,7 @@ class HomeContainer extends React.Component {
   render(){
     return(
   <div>
+
     <BaseLayout>
 
       <AboutUs />
@@ -21,21 +22,33 @@ class AboutUs extends React.Component {
   render(){
     return(
     <div>
-        <div className="col-md-push-3 col-md-6">
-          <h3>What We Do</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div className="col-md-push-3 col-md-6 about_us">
+          <h3 className="text-center">Bringing people together for the love of the game!</h3>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>_Futbol Finder was designed for you, the soccer player! We at _FF
+          share the pride in collectively bringing people together to play.
+          Our platform is simple. You log in or sign up, modify your profile,
+          and then create local pick up matches for other people to locate! Furthermore,
+          other users can see your created matches and designate if they
+          will be attending. </p>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-            <div className="container">
-              <div className="home-picture col-md-push-2 col-md-4">
-                  <img src='http://placehold.it/300x300/' className="author-image" />
-              </div>
+          <div className="container">
+            <div className="home-picture col-md-push-2 col-md-4">
+                <img src='http://placehold.it/300x300/' className="author-image" />
             </div>
+          </div>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Our app was designed first and foremost to allow people to play. As
+          we continue to update and add more functionality, we will be sure to keep
+          you updated on the happenings at _FF. We hope you continue to support
+          by simply using the app and spreading the word about us!</p>
+
+          <p>As we consider ourself as much a part of the community as yourself, we
+          encourage feedback! So with that being said, please feel free to reach
+          out to us via the contact form with questions or concerns.</p>
+
+        <h3 className="text-center">We look forward to seeing you on the pitch!</h3>
+        <h4 className="text-center"><i>_Futbol Finder Team</i></h4>
 
         </div>
       <div className="row" />

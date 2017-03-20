@@ -16,15 +16,66 @@ img {
   max-width: 100%;
 }
 
+$sans: 'Open Sans', sans-serif;
 
+* {
+  font-family: $sans;
+}
+
+legend {
+  color: white;
+}
 // Base Layout
+
+#nav-dropdown {
+  color: white;
+}
+
+#header-nav {
+  margin-bottom: 0px;
+  border: none;
+  background-color: #2A3914;
+}
 
 .footer-nav {
   display: flex;
  list-style-type: none;
+
+ position: absolute;
+ right: 0;
+ bottom: -1;
+ left: 0;
+ padding: 1rem;
+ background-color: #6a7a67;
+ text-align: center;
 }
 
 .signup-btn {
   position: relative;
   top: 8px;
+}
+
+// Home
+
+.homebg {
+  position: absolute;
+  z-index: -1;
+}
+
+.about_us {
+  font-family: $sans;
+  color: #d0cac6;
+  font-size: 16px;
+}
+
+// Auth
+
+.auth_contain {
+  padding-top: 10%;
+}
+
+// Match Browser
+
+.user_home {
+  margin-top: 20px;
 }

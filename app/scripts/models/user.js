@@ -18,6 +18,13 @@ var User = ParseModel.extend({
       callback(newUser);
     });
   },
+  retrieveImage: function(objectId){
+    var url = parse.BASE_API_URL + '/users/' + objectId;
+    var image =  $.get(url).done(user => {
+      return user.imageUrl;
+    });
+    return image
+  },
   signup: function(creds, callback){
     var newUser = new User(creds);
     newUser.save().then(() => {
@@ -36,7 +43,6 @@ var User = ParseModel.extend({
   },
   currentUser: function(){
     var user = localStorage.getItem('user');
-    console.log(user);
     if(!user){
      return false;
     }

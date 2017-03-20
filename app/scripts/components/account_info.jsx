@@ -11,6 +11,8 @@ class AccountInfoContainer extends React.Component {
   constructor(props){
     super(props);
 
+    var user = User.currentUser();
+
     this.state = {
       pic: null,
       user: User.currentUser()
@@ -34,6 +36,7 @@ class AccountInfoContainer extends React.Component {
     this.state.user.set({'number': number});
   }
 
+
   handleSave(e) {
     e.preventDefault();
 
@@ -43,7 +46,7 @@ class AccountInfoContainer extends React.Component {
       data: pic
     }).then((response)=>{
       var imageUrl = response.url;
-      console.log(imageUrl);
+
       this.state.user.set({'imageUrl': imageUrl});
     });
 
@@ -51,7 +54,7 @@ class AccountInfoContainer extends React.Component {
   }
 
   render(){
-    console.log('state', this.state);
+
     return (
       <BaseLayout>
         <div className="container">
@@ -64,7 +67,7 @@ class AccountInfoContainer extends React.Component {
 
                   <div className="col-md-2">
 
-                    <ImageUpload handleImage={this.handleImage}/>
+                    <ImageUpload user={this.state.user} handleImage={this.handleImage}/>
 
 	                </div>
 
@@ -91,7 +94,7 @@ class AccountInputFields extends React.Component {
     super(props);
 
     var user = User.currentUser();
-    // console.log('user', user);
+  
 
     this.state = {
       name: user.get('name') || null,
@@ -127,14 +130,14 @@ class AccountInputFields extends React.Component {
       <div className="control-group">
         <label className="control-label" htmlFor="number">Phone Number</label>
         <div className="controls">
-          <input id="number" name="number" type="text" placeholder="USER NUMBER TO POPULATE" className="input-xlarge" required="" value={this.state.number} onChange={this.handleNumber}/>
+          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" required="" value={this.state.number} onChange={this.handleNumber}/>
 
         </div>
       </div>
 
 
     <div className="control-group">
-      <label className="control-label" htmlFor="button1id"></label>
+      <label className="control-label" htmlFor="buttonid"></label>
       <div className="controls">
         <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
@@ -149,9 +152,13 @@ class ImageUpload extends React.Component {
   constructor(props){
     super(props);
 
+    var preview;
+
+    this.props.user ? preview = this.props.user.get('imageUrl') : preview = 'http://placehold.it/150x150/'
+
     this.state = {
       pic: null,
-      preview: 'http://placehold.it/150x150/'
+      preview: preview
     };
 
     this.handleImage = this.handleImage.bind(this);

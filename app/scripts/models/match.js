@@ -1,13 +1,14 @@
 var Backbone = require('backbone');
 
 var ParseModel = require('./parse').ParseModel;
+var ParseCollection = require('./parse').ParseCollection;
 
 var Match = ParseModel.extend({
   urlRoot: 'https://futbol-finder.herokuapp.com/classes/Matches'
 
 });
 
-var MatchCollection = Backbone.Collection.extend({
+var MatchCollection = ParseCollection.extend({
   model: Match,
   url: 'https://futbol-finder.herokuapp.com/classes/Matches'
 });

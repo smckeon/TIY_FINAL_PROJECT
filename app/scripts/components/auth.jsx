@@ -35,8 +35,9 @@ class AuthContainer extends React.Component {
     return (
     <div>
       <AuthHeader />
+      <img className="homebg" src="./images/grassbg.jpg" />
 
-        <div className="container">
+        <div className="container auth_contain">
           <div className="row">
            <div className="col-md-12">
               <div className="col-md-6">
@@ -98,7 +99,7 @@ class Login extends React.Component {
          <input onChange={this.setPassword} value={this.state.password} className="form-control" name="password" id="password-login" type="password" placeholder="Enter Password" />
        </div>
 
-       <input className="btn btn-primary form-control" type="submit" value="Login" value={this.props.submitBtn}  />
+       <input className="btn btn-success form-control" type="submit" value="Login" value={this.props.submitBtn}  />
      </form>
     )
   }

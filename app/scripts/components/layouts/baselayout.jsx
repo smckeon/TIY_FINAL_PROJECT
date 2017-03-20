@@ -11,6 +11,7 @@ class BaseLayout extends React.Component {
     return(
       <div>
         <Header />
+        <img className="homebg" src="./images/grassbg.jpg" />
           {this.props.children}
         <Footer />
       </div>
@@ -46,7 +47,7 @@ class Header extends React.Component{
 class SignupNavItem extends React.Component{
   render(){
     return(
-      <a href="#/auth" className="btn btn-primary signup-btn" role="button">
+      <a href="#/auth" className="btn btn-success signup-btn" role="button">
         Login | Signup
       </a>
     )
@@ -79,7 +80,7 @@ class LoggedInNavItem extends React.Component{
 class Footer extends React.Component{
   render(){
     return(
-      <div clasName="container">
+      <div clasName="container footer_holder">
         <div className="row">
           <div className="footer">
             <ul className="footer-nav well">
