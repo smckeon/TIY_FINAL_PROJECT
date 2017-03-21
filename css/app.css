@@ -5769,9 +5769,6 @@ img {
 * {
   font-family: "Open Sans", sans-serif; }
 
-legend {
-  color: #d0c4b1; }
-
 .nav > li > a:hover {
   text-decoration: none;
   background-color: #3c763d; }
@@ -5789,6 +5786,7 @@ legend {
   color: white; }
 
 #header-nav {
+  border-radius: 0px;
   margin-bottom: 0px;
   border: none;
   background-color: #2A3914; }
@@ -5798,13 +5796,17 @@ legend {
   display: -ms-flexbox;
   display: flex;
   list-style-type: none;
-  position: absolute;
+  position: relative;
   right: 0;
-  bottom: -1;
+  bottom: -75px;
   left: 0;
   padding: 1rem;
   background-color: #6a7a67;
-  text-align: center; }
+  text-align: center;
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 0;
+  border: none; }
 
 .signup-btn {
   position: relative;
@@ -5814,21 +5816,41 @@ legend {
   position: absolute;
   z-index: -1; }
 
+.then {
+  background-color: rgba(26, 21, 21, 0.3);
+  border-radius: 10px;
+  padding-left: 10px; }
+
+.about_us_slogan {
+  color: #5CB85C;
+  font-weight: bolder;
+  font-style: italic;
+  margin-bottom: 25px; }
+
 .about_us {
   font-family: "Open Sans", sans-serif;
-  color: #d0cac6;
+  color: #bdbaba;
   font-size: 14px; }
 
 .carousel-indicators {
   bottom: 0px; }
 
 #myCarousel {
-  box-shadow: 5px -2px 25px 10px #d0c4b1; }
+  box-shadow: 5px -2px 25px 8px #8e8473; }
 
 .auth_contain {
-  padding-top: 10%; }
+  padding-top: 2%; }
 
 .user_home {
-  margin-top: 20px; }
+  margin-top: 2%; }
+
+.match-listing {
+  margin-top: 5px; }
+
+.match-template {
+  margin-top: 2%; }
+
+.acct_info {
+  margin-top: 2%; }
 
 /*# sourceMappingURL=app.css.map */

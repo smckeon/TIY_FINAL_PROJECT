@@ -31,30 +31,48 @@ class AccountInfoContainer extends React.Component {
   }
 
   handleImage(file) {
-    this.setState({'pic': file});
+    // var pic = this.state.pic;
+    // var image = new ParseFile(pic);
+    // image.save({}, {
+    //   data: pic
+    // }).then((response)=>{
+    //   var imageUrl = response.url;
+
+      // this.state.user.set({'imageUrl': imageUrl});
+    // });
+
+    // this.setState({'pic': file});
   }
 
-  handleName(name) {
-    this.state.user.set({'name': name});
+  handleName(e) {
+    console.log(e.target.value);
+    this.setState({'name': e.target.value});
+    // this.state.user.set({'name': name});
   }
 
-  handleNumber(number) {
-    this.state.user.set({'number': number});
+  handleNumber(e) {
+    this.setState({'number': e.target.value});
+    // this.state.user.set({'number': number});
   }
 
 
   handleSave(e) {
     e.preventDefault();
 
-    var pic = this.state.pic;
-    var image = new ParseFile(pic);
-    image.save({}, {
-      data: pic
-    }).then((response)=>{
-      var imageUrl = response.url;
 
-      this.state.user.set({'imageUrl': imageUrl});
-    });
+    // var pic = this.state.pic;
+    // var image = new ParseFile(pic);
+    // image.save({}, {
+    //   data: pic
+    // }).then((response)=>{
+    //   var imageUrl = response.url;
+    //
+    //   this.state.user.set({'imageUrl': imageUrl});
+    // });
+
+    // this.state.user.set({'imageUrl': imageUrl});
+
+    this.state.user.set(this.state);
 
     this.state.user.save();
   }
@@ -65,7 +83,7 @@ class AccountInfoContainer extends React.Component {
       React.createElement(BaseLayout, null, 
         React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "well"}, 
+            React.createElement("div", {className: "well acct_info"}, 
 
             React.createElement("form", {className: "form-horizontal", encType: "multipart/form-data"}, 
 
@@ -81,7 +99,32 @@ class AccountInfoContainer extends React.Component {
 
                   React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
 
-                    React.createElement(AccountInputFields, {handleName: this.handleName, handleNumber: this.handleNumber, handleSave: this.handleSave})
+                    React.createElement(AccountInputFields, {handleName: this.handleName, handleNumber: this.handleNumber, handleSave: this.handleSave}), 
+
+                      React.createElement("div", {className: "control-group"}, 
+                        React.createElement("label", {className: "control-label", htmlFor: "email"}, "Name"), 
+                        React.createElement("div", {className: "controls"}, 
+                          React.createElement("input", {id: "name", name: "name", type: "text", placeholder: "", className: "input-xlarge", value: this.state.name, onChange: this.handleName})
+
+                        )
+                      ), 
+
+                      React.createElement("div", {className: "control-group"}, 
+                        React.createElement("label", {className: "control-label", htmlFor: "number"}, "Phone Number"), 
+                        React.createElement("div", {className: "controls"}, 
+                          React.createElement("input", {id: "number", name: "number", type: "text", placeholder: "555-555-5555", maxLength: "12", className: "input-xlarge", value: this.state.number, onChange: this.handleNumber})
+
+                        )
+                      ), 
+
+
+                    React.createElement("div", {className: "control-group"}, 
+                      React.createElement("label", {className: "control-label", htmlFor: "buttonid"}), 
+                      React.createElement("div", {className: "controls"}, 
+                        React.createElement("button", {id: "button1id", name: "button1id", className: "btn btn-primary", onClick: this.handleSave}, "Update"), 
+                        React.createElement("button", {id: "button2id", name: "button2id", className: "btn btn-default"}, "Cancel")
+                      )
+                    )
 
                   )
 
@@ -115,43 +158,44 @@ class AccountInputFields extends React.Component {
   }
 
   handleName(e) {
-    this.setState({'name': e.target.value});
-    this.props.handleName(this.state.name);
+    // console.log('e', e.target.value);
+    // this.setState({'name': e.target.value});
+    // this.props.handleName(this.state.name);
 
   }
 
   handleNumber(e) {
-    this.setState({'number': e.target.value});
-    this.props.handleNumber(this.state.number);
+    // this.setState({'number': e.target.value});
+    // this.props.handleNumber(this.state.number);
   }
 
   render(){
     return(
-    React.createElement("div", null, 
-      React.createElement("div", {className: "control-group"}, 
-        React.createElement("label", {className: "control-label", htmlFor: "email"}, "Name"), 
-        React.createElement("div", {className: "controls"}, 
-          React.createElement("input", {id: "name", name: "name", type: "text", placeholder: "", className: "input-xlarge", required: "", value: this.state.name, onChange: this.handleName})
+    React.createElement("div", null
+      /*<div className="control-group">
+        <label className="control-label" htmlFor="email">Name</label>
+        <div className="controls">
+          <input id="name" name="name" type="text" placeholder="" className="input-xlarge" value={this.state.name} onChange={this.props.handleName}/>
 
-        )
-      ), 
+        </div>
+      </div>
 
-      React.createElement("div", {className: "control-group"}, 
-        React.createElement("label", {className: "control-label", htmlFor: "number"}, "Phone Number"), 
-        React.createElement("div", {className: "controls"}, 
-          React.createElement("input", {id: "number", name: "number", type: "text", placeholder: "555-555-5555", maxLength: "12", className: "input-xlarge", required: "", value: this.state.number, onChange: this.handleNumber})
+      <div className="control-group">
+        <label className="control-label" htmlFor="number">Phone Number</label>
+        <div className="controls">
+          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" value={this.state.number} onChange={this.props.handleNumber}/>
 
-        )
-      ), 
+        </div>
+      </div>
 
 
-    React.createElement("div", {className: "control-group"}, 
-      React.createElement("label", {className: "control-label", htmlFor: "buttonid"}), 
-      React.createElement("div", {className: "controls"}, 
-        React.createElement("button", {id: "button1id", name: "button1id", className: "btn btn-primary", onClick: this.props.handleSave}, "Update"), 
-        React.createElement("button", {id: "button2id", name: "button2id", className: "btn btn-default"}, "Cancel")
-      )
-    )
+    <div className="control-group">
+      <label className="control-label" htmlFor="buttonid"></label>
+      <div className="controls">
+        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
+        <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
+      </div>
+    </div>*/
   )
     )
   }
@@ -243,7 +287,7 @@ class AuthContainer extends React.Component {
         React.createElement("div", {className: "container auth_contain"}, 
           React.createElement("div", {className: "row"}, 
            React.createElement("div", {className: "col-md-12"}, 
-              React.createElement("div", {className: "col-md-6"}, 
+              React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
                 React.createElement("div", {className: "well"}, 
 
                  React.createElement(Login, {action: this.login, submitBtn: "Login", title: "Please Login"})
@@ -251,10 +295,10 @@ class AuthContainer extends React.Component {
                )
                ), 
 
-               React.createElement("div", {className: "col-md-6"}, 
+               React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
                React.createElement("div", {className: "well"}, 
 
-                 React.createElement(SignUp, {action: this.createNewAccount, submitBtn: "Login", title: "No Account? Sign Up!"})
+                 React.createElement(SignUp, {action: this.createNewAccount, submitBtn: "Sign Up", title: "No Account? Sign Up!"})
 
                )
              )
@@ -333,15 +377,15 @@ class AuthHeader extends React.Component {
   render(){
     return(
       React.createElement("div", {className: "auth-header"}, 
-        React.createElement("nav", {className: "navbar navbar-default", role: "navigation", id: "header-nav"}, 
+        React.createElement("nav", {className: "navbar", role: "navigation", id: "header-nav"}, 
             React.createElement("div", {className: "container"}, 
   		    React.createElement("div", {className: "navbar-header"}, 
-  		      React.createElement("a", {className: "navbar-brand navbar-brand-centered", href: "#"}, React.createElement("img", {src: "./images/logo.png"}))
+  		      React.createElement("a", {className: "navbar-brand navbar-brand-centered", href: "#"}, React.createElement("img", {src: ".../../images/ff_logo.png"}))
   		    ), 
 
   		    React.createElement("div", {className: "collapse navbar-collapse", id: "navbar-brand-centered"}, 
   		      React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-  		        React.createElement("li", null, React.createElement("a", {href: "#/auth"}, "Contact Us"))
+  		        React.createElement("li", {className: "contact_us"}, React.createElement("a", {href: "#"}, "Contact Us"))
   		      )
   		    )
   		  )
@@ -420,7 +464,7 @@ class CreateMatch extends React.Component {
     return(
       React.createElement(BaseLayout, null, 
           React.createElement("div", {className: "container"}, 
-            React.createElement("div", {className: "game-template col-md-6"}, 
+            React.createElement("div", {className: "match-template col-md-push-3 col-md-6"}, 
               React.createElement("div", {className: "thumbnail"}, 
                 React.createElement("div", {className: "caption"}, 
                   React.createElement("div", {className: "form-group"}, 
@@ -440,7 +484,7 @@ class CreateMatch extends React.Component {
                     React.createElement("textarea", {value: this.state.description, onChange: this._handleDescription, className: "form-control", rows: "4", id: "description"})
                   ), 
 
-                    React.createElement("a", {className: "btn btn-primary", role: "button", onClick: this._createMatch}, "Create Match")
+                    React.createElement("a", {className: "btn btn-success center-block", role: "button", onClick: this._createMatch}, "Create Match")
                   )
                 )
               )
@@ -480,16 +524,18 @@ class AboutUs extends React.Component {
   render(){
     return(
     React.createElement("div", null, 
-        React.createElement("div", {className: "col-md-push-3 col-md-6 about_us"}, 
-          React.createElement("h3", {className: "text-center"}, "Bringing people together for the love of the game!"), 
-
-          React.createElement("p", null, "_Futbol Finder was designed for you, the soccer player! We at _FF" + ' ' +
+      React.createElement("div", {className: "col-md-push-3 col-md-6 about_us"}, 
+        React.createElement("div", {className: "then"}, 
+          React.createElement("h3", {className: "about_us_slogan"}, "Bringing people together for the love of the game!")
+        ), 
+        React.createElement("div", {className: "then"}, 
+          React.createElement("p", null, "_Futbol Finder was designed for you, the soccer player! We at _futbol finder" + ' ' +
           "share the pride in collectively bringing people together to play." + ' ' +
           "Our platform is simple. You log in or sign up, modify your profile," + ' ' +
           "and then create local pick up matches for other people to locate! Furthermore," + ' ' +
           "other users can see your created matches and designate if they" + ' ' +
-          "will be attending. "), 
-
+          "will be attending. ")
+        ), 
         React.createElement("div", {className: "container"}, 
             React.createElement("div", {className: "home-picture col-md-push-1 col-md-4"}, 
 
@@ -524,19 +570,22 @@ class AboutUs extends React.Component {
             )
           ), 
           React.createElement("br", null), 
-
+        React.createElement("div", {className: "then"}, 
           React.createElement("p", null, "Our app was designed first and foremost to allow people to play. As" + ' ' +
           "we continue to update and add more functionality, we will be sure to keep" + ' ' +
           "you updated on the happenings at _futbol finder. We hope you continue to support" + ' ' +
-          "by simply using the app and spreading the word about us!"), 
-
+          "by simply using the app and spreading the word about us!")
+        ), 
+        React.createElement("div", {className: "then"}, 
           React.createElement("p", null, "As we consider ourself as much a part of the community as yourself, we" + ' ' +
           "encourage feedback! So with that being said, please feel free to reach" + ' ' +
-          "out to us via the contact form with questions or concerns."), 
-
+          "out to us via the contact form with questions or concerns.")
+        ), 
+        React.createElement("div", {className: "then"}, 
         React.createElement("h3", {className: "text-center"}, "We look forward to seeing you on the pitch!"), 
-        React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_futbol finder Team"))
-      ), 
+        React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_futbol finder team"))
+      )
+    ), 
     React.createElement("div", {className: "row"}, "  ")
 )
     )
@@ -617,7 +666,7 @@ class LoggedInNavItem extends React.Component{
   }
   render(title){
     return(
-      React.createElement(NavDropdown, {title: User.currentUser() ?
+      React.createElement(NavDropdown, {title: User.currentUser().get('name') ?
                           User.currentUser().get('name') :
                           User.currentUser().get('username'), 
                           id: "nav-dropdown"}, 
@@ -680,7 +729,7 @@ class MatchListing extends React.Component {
     return(
       React.createElement("div", null, 
         React.createElement("div", {className: "container"}, 
-          React.createElement("div", {className: "game-template col-md-4"}, 
+          React.createElement("div", {className: "match-listing col-md-4"}, 
             React.createElement("div", {className: "thumbnail"}, 
                this.state.matchCollection.length != 0 ? React.createElement(MatchListingModal, {collection:  this.state.matchCollection}) : null, 
               React.createElement(MatchInfo, {matchCollection: this.state.matchCollection})
@@ -1035,7 +1084,7 @@ var ReactDOM = require('react-dom');
 var AuthContainer = require('../scripts/components/auth.jsx');
 var WelcomeContainer = require('../scripts/components/user_home.jsx');
 var HomeContainer = require('../scripts/components/home.jsx');
-var AccountInfoContainer = require('../scripts/components/account_info.jsx');
+var AccountInfoContainer = require('../scripts/components/account_infoTEST.jsx');
 var CreateMatch = require('../scripts/components/create_match.jsx');
 
 // Importing our User Model
@@ -1121,7 +1170,7 @@ module.exports = {
   appRouter
 }
 
-},{"../scripts/components/account_info.jsx":2,"../scripts/components/auth.jsx":3,"../scripts/components/create_match.jsx":4,"../scripts/components/home.jsx":5,"../scripts/components/user_home.jsx":8,"./models/user":13,"./parse":14,"backbone":116,"react":425,"react-dom":277}],16:[function(require,module,exports){
+},{"../scripts/components/account_infoTEST.jsx":2,"../scripts/components/auth.jsx":3,"../scripts/components/create_match.jsx":4,"../scripts/components/home.jsx":5,"../scripts/components/user_home.jsx":8,"./models/user":13,"./parse":14,"backbone":116,"react":425,"react-dom":277}],16:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/array/from"), __esModule: true };
 },{"core-js/library/fn/array/from":30}],17:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
