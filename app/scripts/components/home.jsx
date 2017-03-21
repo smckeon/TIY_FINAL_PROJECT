@@ -22,16 +22,18 @@ class AboutUs extends React.Component {
   render(){
     return(
     <div>
-        <div className="col-md-push-3 col-md-6 about_us">
-          <h3 className="text-center">Bringing people together for the love of the game!</h3>
-
-          <p>_Futbol Finder was designed for you, the soccer player! We at _FF
+      <div className="col-md-push-3 col-md-6 about_us">
+        <div className='then'>
+          <h3 className="about_us_slogan">Bringing people together for the love of the game!</h3>
+        </div>
+        <div className="then">
+          <p>_Futbol Finder was designed for you, the soccer player! We at _futbol finder
           share the pride in collectively bringing people together to play.
           Our platform is simple. You log in or sign up, modify your profile,
           and then create local pick up matches for other people to locate! Furthermore,
           other users can see your created matches and designate if they
           will be attending. </p>
-
+        </div>
         <div className="container">
             <div className="home-picture col-md-push-1 col-md-4">
 
@@ -66,19 +68,22 @@ class AboutUs extends React.Component {
             </div>
           </div>
           <br />
-
+        <div className="then">
           <p>Our app was designed first and foremost to allow people to play. As
           we continue to update and add more functionality, we will be sure to keep
           you updated on the happenings at _futbol finder. We hope you continue to support
           by simply using the app and spreading the word about us!</p>
-
+        </div>
+        <div className="then">
           <p>As we consider ourself as much a part of the community as yourself, we
           encourage feedback! So with that being said, please feel free to reach
           out to us via the contact form with questions or concerns.</p>
-
+        </div>
+        <div className="then">
         <h3 className="text-center">We look forward to seeing you on the pitch!</h3>
-        <h4 className="text-center"><i>_futbol finder Team</i></h4>
+        <h4 className="text-center"><i>_futbol finder team</i></h4>
       </div>
+    </div>
     <div className="row">  </div>
 </div>
     )

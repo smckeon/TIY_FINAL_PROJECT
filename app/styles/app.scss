@@ -24,9 +24,6 @@ $tan: #d0c4b1;
   font-family: $sans;
 }
 
-legend {
-  color: $tan;
-}
 // Base Layout
 
 .nav > li > a:hover {
@@ -52,22 +49,27 @@ legend {
 }
 
 #header-nav {
+  border-radius: 0px;
   margin-bottom: 0px;
   border: none;
   background-color: #2A3914;
+  // background-image: url("../images/navbg3.jpg");
 }
 
 .footer-nav {
-  display: flex;
- list-style-type: none;
-
- position: absolute;
- right: 0;
- bottom: -1;
- left: 0;
- padding: 1rem;
- background-color: #6a7a67;
- text-align: center;
+    display: flex;
+    list-style-type: none;
+    position: relative;
+    right: 0;
+    bottom: -75px;
+    left: 0;
+    padding: 1rem;
+    background-color: #6a7a67;
+    text-align: center;
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 0;
+    border: none;
 }
 
 .signup-btn {
@@ -82,9 +84,22 @@ legend {
   z-index: -1;
 }
 
+.then {
+  background-color:rgba(26, 21, 21, 0.3);
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.about_us_slogan {
+  color: #5CB85C;
+  font-weight: bolder;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
 .about_us {
   font-family: $sans;
-  color: #d0cac6;
+  color: #bdbaba;
   font-size: 14px;
 }
 
@@ -93,17 +108,33 @@ legend {
 }
 
 #myCarousel {
-  box-shadow: 5px -2px 25px 10px $tan;
+  box-shadow: 5px -2px 25px 8px #8e8473;
 }
 
 // Auth
 
 .auth_contain {
-  padding-top: 10%;
+  padding-top: 2%;
 }
 
 // Match Browser
 
 .user_home {
-  margin-top: 20px;
+  margin-top: 2%;
+}
+
+.match-listing {
+  margin-top: 5px;
+}
+
+// Create Match
+
+.match-template {
+  margin-top: 2%;
+}
+
+// Account Info
+
+.acct_info {
+  margin-top: 2%;
 }

@@ -77,7 +77,7 @@ class AccountInfoContainer extends React.Component {
       <BaseLayout>
         <div className="container">
           <div className="row">
-            <div className="well">
+            <div className="well acct_info">
 
             <form className="form-horizontal" encType="multipart/form-data">
 
@@ -94,6 +94,31 @@ class AccountInfoContainer extends React.Component {
                   <div className="col-md-push-3 col-md-4">
 
                     <AccountInputFields handleName={this.handleName} handleNumber={this.handleNumber} handleSave={this.handleSave}/>
+
+                      <div className="control-group">
+                        <label className="control-label" htmlFor="email">Name</label>
+                        <div className="controls">
+                          <input id="name" name="name" type="text" placeholder="" className="input-xlarge" value={this.state.name} onChange={this.handleName}/>
+
+                        </div>
+                      </div>
+
+                      <div className="control-group">
+                        <label className="control-label" htmlFor="number">Phone Number</label>
+                        <div className="controls">
+                          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" value={this.state.number} onChange={this.handleNumber}/>
+
+                        </div>
+                      </div>
+
+
+                    <div className="control-group">
+                      <label className="control-label" htmlFor="buttonid"></label>
+                      <div className="controls">
+                        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.handleSave}>Update</button>
+                        <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
+                      </div>
+                    </div>
 
                   </div>
 
@@ -141,7 +166,7 @@ class AccountInputFields extends React.Component {
   render(){
     return(
     <div>
-      <div className="control-group">
+      {/*<div className="control-group">
         <label className="control-label" htmlFor="email">Name</label>
         <div className="controls">
           <input id="name" name="name" type="text" placeholder="" className="input-xlarge" value={this.state.name} onChange={this.props.handleName}/>
@@ -164,7 +189,7 @@ class AccountInputFields extends React.Component {
         <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
       </div>
-    </div>
+    </div>*/}
   </div>
     )
   }

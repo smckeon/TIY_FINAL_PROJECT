@@ -26,7 +26,7 @@ class MatchListing extends React.Component {
     return(
       <div>
         <div className="container">
-          <div className="game-template col-md-4">
+          <div className="match-listing col-md-4">
             <div className="thumbnail">
               { this.state.matchCollection.length != 0 ? <MatchListingModal collection={ this.state.matchCollection }/> : null }
               <MatchInfo matchCollection={this.state.matchCollection}/>

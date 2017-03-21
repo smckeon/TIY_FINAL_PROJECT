@@ -40,7 +40,7 @@ class AuthContainer extends React.Component {
         <div className="container auth_contain">
           <div className="row">
            <div className="col-md-12">
-              <div className="col-md-6">
+              <div className="col-md-push-2 col-md-4">
                 <div className="well">
 
                  <Login action={this.login} submitBtn='Login' title = 'Please Login' />
@@ -48,10 +48,10 @@ class AuthContainer extends React.Component {
                </div>
                </div>
 
-               <div className="col-md-6">
+               <div className="col-md-push-2 col-md-4">
                <div className="well">
 
-                 <SignUp action={this.createNewAccount} submitBtn='Login' title = 'No Account? Sign Up!' />
+                 <SignUp action={this.createNewAccount} submitBtn='Sign Up' title = 'No Account? Sign Up!' />
 
                </div>
              </div>
@@ -130,15 +130,15 @@ class AuthHeader extends React.Component {
   render(){
     return(
       <div className="auth-header">
-        <nav className="navbar navbar-default" role="navigation" id="header-nav">
+        <nav className="navbar" role="navigation" id="header-nav">
             <div className="container">
   		    <div className="navbar-header">
-  		      <a className="navbar-brand navbar-brand-centered" href="#"><img src="./images/logo.png" /></a>
+  		      <a className="navbar-brand navbar-brand-centered" href="#"><img src=".../../images/ff_logo.png" /></a>
   		    </div>
 
   		    <div className="collapse navbar-collapse" id="navbar-brand-centered">
   		      <ul className="nav navbar-nav navbar-right">
-  		        <li><a href="#/auth">Contact Us</a></li>
+  		        <li className="contact_us"><a href="#">Contact Us</a></li>
   		      </ul>
   		    </div>
   		  </div>

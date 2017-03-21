@@ -62,7 +62,7 @@ class CreateMatch extends React.Component {
     return(
       <BaseLayout>
           <div className="container">
-            <div className="game-template col-md-6">
+            <div className="match-template col-md-push-3 col-md-6">
               <div className="thumbnail">
                 <div className="caption">
                   <div className="form-group">
@@ -82,7 +82,7 @@ class CreateMatch extends React.Component {
                     <textarea value={this.state.description} onChange={this._handleDescription} className="form-control" rows="4" id="description"></textarea>
                   </div>
 
-                    <a className="btn btn-primary" role="button" onClick={this._createMatch} >Create Match</a>
+                    <a className="btn btn-success center-block" role="button" onClick={this._createMatch} >Create Match</a>
                   </div>
                 </div>
               </div>

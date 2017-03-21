@@ -67,7 +67,7 @@ class LoggedInNavItem extends React.Component{
   }
   render(title){
     return(
-      <NavDropdown title={User.currentUser() ?
+      <NavDropdown title={User.currentUser().get('name') ?
                           User.currentUser().get('name') :
                           User.currentUser().get('username')}
                           id="nav-dropdown">
