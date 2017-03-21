@@ -88,6 +88,14 @@ legend {
   font-size: 14px;
 }
 
+.carousel-indicators {
+  bottom: 0px;
+}
+
+#myCarousel {
+  box-shadow: 5px -2px 25px 10px $tan;
+}
+
 // Auth
 
 .auth_contain {

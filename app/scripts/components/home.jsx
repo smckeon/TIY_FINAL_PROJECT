@@ -37,7 +37,7 @@ class AboutUs extends React.Component {
 
               <br />
               <div id="myCarousel" className="carousel slide" data-ride="carousel">
-                {/* Indicators */}
+
                 <ol className="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -45,7 +45,6 @@ class AboutUs extends React.Component {
                   <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
 
-                {/* Wrapper for slides */}
                 <div className="carousel-inner" role="listbox">
                   <div className="item active">
                     <img src="./images/home_photo2.jpeg" alt="Chania" width="460" height="345" />
