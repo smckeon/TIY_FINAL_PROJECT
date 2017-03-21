@@ -495,7 +495,7 @@ class AboutUs extends React.Component {
 
               React.createElement("br", null), 
               React.createElement("div", {id: "myCarousel", className: "carousel slide", "data-ride": "carousel"}, 
-                /* Indicators */
+
                 React.createElement("ol", {className: "carousel-indicators"}, 
                   React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "0", className: "active"}), 
                   React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "1"}), 
@@ -503,7 +503,6 @@ class AboutUs extends React.Component {
                   React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "3"})
                 ), 
 
-                /* Wrapper for slides */
                 React.createElement("div", {className: "carousel-inner", role: "listbox"}, 
                   React.createElement("div", {className: "item active"}, 
                     React.createElement("img", {src: "./images/home_photo2.jpeg", alt: "Chania", width: "460", height: "345"})

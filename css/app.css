@@ -5819,6 +5819,12 @@ legend {
   color: #d0cac6;
   font-size: 14px; }
 
+.carousel-indicators {
+  bottom: 0px; }
+
+#myCarousel {
+  box-shadow: 5px -2px 25px 10px #d0c4b1; }
+
 .auth_contain {
   padding-top: 10%; }
 
