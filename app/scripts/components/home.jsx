@@ -32,15 +32,45 @@ class AboutUs extends React.Component {
           other users can see your created matches and designate if they
           will be attending. </p>
 
-          <div className="container">
-            <div className="home-picture col-md-push-2 col-md-4">
-                <img src='http://placehold.it/300x300/' className="author-image" />
+        <div className="container">
+            <div className="home-picture col-md-push-1 col-md-4">
+
+              <br />
+              <div id="myCarousel" className="carousel slide" data-ride="carousel">
+                {/* Indicators */}
+                <ol className="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                {/* Wrapper for slides */}
+                <div className="carousel-inner" role="listbox">
+                  <div className="item active">
+                    <img src="./images/home_photo2.jpeg" alt="Chania" width="460" height="345" />
+                  </div>
+
+                  <div className="item">
+                    <img src="./images/home_photo4.jpeg" alt="Chania" width="460" height="345" />
+                  </div>
+
+                  <div className="item">
+                    <img src="./images/home_photo1.jpeg" alt="Flower" width="460" height="345" />
+                  </div>
+
+                  <div className="item">
+                    <img src="./images/home_photo3.jpg" alt="Flower" width="460" height="345" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <br />
 
           <p>Our app was designed first and foremost to allow people to play. As
           we continue to update and add more functionality, we will be sure to keep
-          you updated on the happenings at _FF. We hope you continue to support
+          you updated on the happenings at _futbol finder. We hope you continue to support
           by simply using the app and spreading the word about us!</p>
 
           <p>As we consider ourself as much a part of the community as yourself, we
@@ -48,12 +78,10 @@ class AboutUs extends React.Component {
           out to us via the contact form with questions or concerns.</p>
 
         <h3 className="text-center">We look forward to seeing you on the pitch!</h3>
-        <h4 className="text-center"><i>_Futbol Finder Team</i></h4>
-
-        </div>
-      <div className="row" />
-    </div>
-
+        <h4 className="text-center"><i>_futbol finder Team</i></h4>
+      </div>
+    <div className="row">  </div>
+</div>
     )
   }
 };

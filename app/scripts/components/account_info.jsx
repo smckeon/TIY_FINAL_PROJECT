@@ -59,19 +59,21 @@ class AccountInfoContainer extends React.Component {
       <BaseLayout>
         <div className="container">
           <div className="row">
+            <div className="well">
 
             <form className="form-horizontal" encType="multipart/form-data">
+
               <fieldset>
 
                 <legend>Account Information</legend>
 
-                  <div className="col-md-2">
+                  <div className="col-md-push-3 col-md-4">
 
                     <ImageUpload user={this.state.user} handleImage={this.handleImage}/>
 
 	                </div>
 
-                  <div className="col-md-3">
+                  <div className="col-md-push-3 col-md-4">
 
                     <AccountInputFields handleName={this.handleName} handleNumber={this.handleNumber} handleSave={this.handleSave}/>
 
@@ -82,6 +84,7 @@ class AccountInfoContainer extends React.Component {
 
         	</div>
         </div>
+      </div>
       </BaseLayout>
     )
   }
@@ -94,7 +97,7 @@ class AccountInputFields extends React.Component {
     super(props);
 
     var user = User.currentUser();
-  
+
 
     this.state = {
       name: user.get('name') || null,
@@ -118,7 +121,7 @@ class AccountInputFields extends React.Component {
 
   render(){
     return(
-      <div className="well">
+    <div>
       <div className="control-group">
         <label className="control-label" htmlFor="email">Name</label>
         <div className="controls">
@@ -143,7 +146,7 @@ class AccountInputFields extends React.Component {
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
       </div>
     </div>
-    </div>
+  </div>
     )
   }
 };

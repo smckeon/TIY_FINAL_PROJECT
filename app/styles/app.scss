@@ -17,18 +17,38 @@ img {
 }
 
 $sans: 'Open Sans', sans-serif;
+$green: #3c763d;
+$tan: #d0c4b1;
 
 * {
   font-family: $sans;
 }
 
 legend {
-  color: white;
+  color: $tan;
 }
 // Base Layout
 
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: $green;
+  }
+
+.dropdown-menu {
+    background-color: $tan;
+  }
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: $tan;
+  }
+
+.contact_us > a {
+  color: white;
+}
+
 #nav-dropdown {
   color: white;
+
 }
 
 #header-nav {
@@ -65,7 +85,7 @@ legend {
 .about_us {
   font-family: $sans;
   color: #d0cac6;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 // Auth
