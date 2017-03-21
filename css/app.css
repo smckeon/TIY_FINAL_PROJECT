@@ -5770,6 +5770,19 @@ img {
   font-family: "Open Sans", sans-serif; }
 
 legend {
+  color: #d0c4b1; }
+
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #3c763d; }
+
+.dropdown-menu {
+  background-color: #d0c4b1; }
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: #d0c4b1; }
+
+.contact_us > a {
   color: white; }
 
 #nav-dropdown {
@@ -5804,7 +5817,7 @@ legend {
 .about_us {
   font-family: "Open Sans", sans-serif;
   color: #d0cac6;
-  font-size: 16px; }
+  font-size: 14px; }
 
 .auth_contain {
   padding-top: 10%; }

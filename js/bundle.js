@@ -65,19 +65,21 @@ class AccountInfoContainer extends React.Component {
       React.createElement(BaseLayout, null, 
         React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "well"}, 
 
             React.createElement("form", {className: "form-horizontal", encType: "multipart/form-data"}, 
+
               React.createElement("fieldset", null, 
 
                 React.createElement("legend", null, "Account Information"), 
 
-                  React.createElement("div", {className: "col-md-2"}, 
+                  React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
 
                     React.createElement(ImageUpload, {user: this.state.user, handleImage: this.handleImage})
 
 	                ), 
 
-                  React.createElement("div", {className: "col-md-3"}, 
+                  React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
 
                     React.createElement(AccountInputFields, {handleName: this.handleName, handleNumber: this.handleNumber, handleSave: this.handleSave})
 
@@ -88,6 +90,7 @@ class AccountInfoContainer extends React.Component {
 
         	)
         )
+      )
       )
     )
   }
@@ -100,7 +103,7 @@ class AccountInputFields extends React.Component {
     super(props);
 
     var user = User.currentUser();
-  
+
 
     this.state = {
       name: user.get('name') || null,
@@ -124,7 +127,7 @@ class AccountInputFields extends React.Component {
 
   render(){
     return(
-      React.createElement("div", {className: "well"}, 
+    React.createElement("div", null, 
       React.createElement("div", {className: "control-group"}, 
         React.createElement("label", {className: "control-label", htmlFor: "email"}, "Name"), 
         React.createElement("div", {className: "controls"}, 
@@ -149,7 +152,7 @@ class AccountInputFields extends React.Component {
         React.createElement("button", {id: "button2id", name: "button2id", className: "btn btn-default"}, "Cancel")
       )
     )
-    )
+  )
     )
   }
 };
@@ -487,15 +490,45 @@ class AboutUs extends React.Component {
           "other users can see your created matches and designate if they" + ' ' +
           "will be attending. "), 
 
-          React.createElement("div", {className: "container"}, 
-            React.createElement("div", {className: "home-picture col-md-push-2 col-md-4"}, 
-                React.createElement("img", {src: "http://placehold.it/300x300/", className: "author-image"})
+        React.createElement("div", {className: "container"}, 
+            React.createElement("div", {className: "home-picture col-md-push-1 col-md-4"}, 
+
+              React.createElement("br", null), 
+              React.createElement("div", {id: "myCarousel", className: "carousel slide", "data-ride": "carousel"}, 
+                /* Indicators */
+                React.createElement("ol", {className: "carousel-indicators"}, 
+                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "0", className: "active"}), 
+                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "1"}), 
+                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "2"}), 
+                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "3"})
+                ), 
+
+                /* Wrapper for slides */
+                React.createElement("div", {className: "carousel-inner", role: "listbox"}, 
+                  React.createElement("div", {className: "item active"}, 
+                    React.createElement("img", {src: "./images/home_photo2.jpeg", alt: "Chania", width: "460", height: "345"})
+                  ), 
+
+                  React.createElement("div", {className: "item"}, 
+                    React.createElement("img", {src: "./images/home_photo4.jpeg", alt: "Chania", width: "460", height: "345"})
+                  ), 
+
+                  React.createElement("div", {className: "item"}, 
+                    React.createElement("img", {src: "./images/home_photo1.jpeg", alt: "Flower", width: "460", height: "345"})
+                  ), 
+
+                  React.createElement("div", {className: "item"}, 
+                    React.createElement("img", {src: "./images/home_photo3.jpg", alt: "Flower", width: "460", height: "345"})
+                  )
+                )
+              )
             )
           ), 
+          React.createElement("br", null), 
 
           React.createElement("p", null, "Our app was designed first and foremost to allow people to play. As" + ' ' +
           "we continue to update and add more functionality, we will be sure to keep" + ' ' +
-          "you updated on the happenings at _FF. We hope you continue to support" + ' ' +
+          "you updated on the happenings at _futbol finder. We hope you continue to support" + ' ' +
           "by simply using the app and spreading the word about us!"), 
 
           React.createElement("p", null, "As we consider ourself as much a part of the community as yourself, we" + ' ' +
@@ -503,12 +536,10 @@ class AboutUs extends React.Component {
           "out to us via the contact form with questions or concerns."), 
 
         React.createElement("h3", {className: "text-center"}, "We look forward to seeing you on the pitch!"), 
-        React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_Futbol Finder Team"))
-
-        ), 
-      React.createElement("div", {className: "row"})
-    )
-
+        React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_futbol finder Team"))
+      ), 
+    React.createElement("div", {className: "row"}, "  ")
+)
     )
   }
 };
@@ -543,15 +574,15 @@ class Header extends React.Component{
   render(){
     return(
       React.createElement("div", {className: "auth-header"}, 
-        React.createElement("nav", {className: "navbar navbar-default", role: "navigation", id: "header-nav"}, 
+        React.createElement("nav", {className: "navbar", role: "navigation", id: "header-nav"}, 
             React.createElement("div", {className: "container"}, 
   		    React.createElement("div", {className: "navbar-header"}, 
-  		      React.createElement("a", {className: "navbar-brand navbar-brand-centered", href: "#"}, React.createElement("img", {src: ".../../images/logo.png"}))
+  		      React.createElement("a", {className: "navbar-brand navbar-brand-centered", href: "#"}, React.createElement("img", {src: ".../../images/ff_logo.png"}))
   		    ), 
 
   		    React.createElement("div", {className: "collapse navbar-collapse", id: "navbar-brand-centered"}, 
   		      React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-  		        React.createElement("li", null, React.createElement("a", {href: ""}, "Contact Us")), 
+  		        React.createElement("li", {className: "contact_us"}, React.createElement("a", {href: "#"}, "Contact Us")), 
 
               User.currentUser() ? React.createElement(LoggedInNavItem, null) : React.createElement(SignupNavItem, null)
   		      )
@@ -587,7 +618,10 @@ class LoggedInNavItem extends React.Component{
   }
   render(title){
     return(
-      React.createElement(NavDropdown, {title: User.currentUser().get('username'), id: "nav-dropdown"}, 
+      React.createElement(NavDropdown, {title: User.currentUser() ?
+                          User.currentUser().get('name') :
+                          User.currentUser().get('username'), 
+                          id: "nav-dropdown"}, 
         React.createElement(MenuItem, {className: "dropdown-item", href: "#/home"}, "Match Browser"), 
         React.createElement(MenuItem, {className: "dropdown-item", href: "#/create"}, "Create Match"), 
         React.createElement(MenuItem, {className: "dropdown-item", href: "#/account"}, "Account Info"), 
@@ -775,7 +809,7 @@ class WelcomeContainer extends React.Component {
 
           React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "well user_home"}, 
-            React.createElement("h2", null, "Match Browser for ", User.currentUser().get('username'), " "), 
+            React.createElement("h2", null, "Match Browser for ", User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username'), "   "), 
             React.createElement("h4", null, "Current games are listed below. If no games are listed, create one!")
           )
         ), 
@@ -993,21 +1027,25 @@ module.exports = parse;
 
 },{"jquery":176}],15:[function(require,module,exports){
 "use strict";
+// Requiring in the libraries which will be used in this page
 var Backbone = require('backbone');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-
+// Importing our Smart components
 var AuthContainer = require('../scripts/components/auth.jsx');
 var WelcomeContainer = require('../scripts/components/user_home.jsx');
 var HomeContainer = require('../scripts/components/home.jsx');
 var AccountInfoContainer = require('../scripts/components/account_info.jsx');
 var CreateMatch = require('../scripts/components/create_match.jsx');
 
+// Importing our User Model
 var User = require('./models/user').User;
 
+// Importing Parse file so the router can communicate with our Parse Server
 var parse = require('./parse');
 
+// Creating initial routes for the app to navigate to
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
@@ -1015,12 +1053,14 @@ var AppRouter = Backbone.Router.extend({
     'home': 'userHome',
     'account': 'accountInfo',
     'create': 'createMatch',
-    'games': 'gamesListing',
+    'games': 'gamesListing'
   },
+  // Initializing a user who will be logged in
   initialize: function(){
    var user = User.currentUser();
 
    if(user){
+    //  If user is logged in, create a session token to store their info
      parse.setup({
        sessionId: user.get('sessionToken'),
        BASE_API_URL: 'https://futbol-finder.herokuapp.com'
@@ -1032,6 +1072,7 @@ var AppRouter = Backbone.Router.extend({
    }
 
  },
+ // Using React to render our route components
   index(){
     ReactDOM.render(
       React.createElement(HomeContainer),
@@ -1073,8 +1114,10 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
+// Instantiating router - AKA 'turning on' the router
 var appRouter = new AppRouter();
 
+// Exporting the router so it can be linked to index.js
 module.exports = {
   appRouter
 }
