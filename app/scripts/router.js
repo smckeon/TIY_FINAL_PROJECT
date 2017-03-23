@@ -7,7 +7,7 @@ var ReactDOM = require('react-dom');
 var AuthContainer = require('../scripts/components/auth.jsx');
 var WelcomeContainer = require('../scripts/components/user_home.jsx');
 var HomeContainer = require('../scripts/components/home.jsx');
-var AccountInfoContainer = require('../scripts/components/account_infoTEST.jsx');
+var AccountInfoContainer = require('../scripts/components/account_info.jsx');
 var CreateMatch = require('../scripts/components/create_match.jsx');
 
 // Importing our User Model

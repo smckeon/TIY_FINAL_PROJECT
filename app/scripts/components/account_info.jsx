@@ -25,48 +25,30 @@ class AccountInfoContainer extends React.Component {
   }
 
   handleImage(file) {
-    // var pic = this.state.pic;
-    // var image = new ParseFile(pic);
-    // image.save({}, {
-    //   data: pic
-    // }).then((response)=>{
-    //   var imageUrl = response.url;
-
-      // this.state.user.set({'imageUrl': imageUrl});
-    // });
-
-    // this.setState({'pic': file});
+    this.setState({'pic': file});
   }
 
-  handleName(e) {
-    console.log(e.target.value);
-    this.setState({'name': e.target.value});
-    // this.state.user.set({'name': name});
+  handleName(name) {
+    this.state.user.set({'name': name});
   }
 
-  handleNumber(e) {
-    this.setState({'number': e.target.value});
-    // this.state.user.set({'number': number});
+  handleNumber(number) {
+    this.state.user.set({'number': number});
   }
 
 
   handleSave(e) {
     e.preventDefault();
 
+    var pic = this.state.pic;
+    var image = new ParseFile(pic);
+    image.save({}, {
+      data: pic
+    }).then((response)=>{
+      var imageUrl = response.url;
 
-    // var pic = this.state.pic;
-    // var image = new ParseFile(pic);
-    // image.save({}, {
-    //   data: pic
-    // }).then((response)=>{
-    //   var imageUrl = response.url;
-    //
-    //   this.state.user.set({'imageUrl': imageUrl});
-    // });
-
-    // this.state.user.set({'imageUrl': imageUrl});
-
-    this.state.user.set(this.state);
+      this.state.user.set({'imageUrl': imageUrl});
+    });
 
     this.state.user.save();
   }
@@ -75,7 +57,7 @@ class AccountInfoContainer extends React.Component {
 
     return (
       <BaseLayout>
-        <div className="container">
+        <div className="container acct_info">
           <div className="row">
             <div className="well">
 
@@ -103,7 +85,7 @@ class AccountInfoContainer extends React.Component {
         	</div>
         </div>
       </div>
-      </BaseLayout>
+    </BaseLayout>
     )
   }
 };
@@ -127,24 +109,23 @@ class AccountInputFields extends React.Component {
   }
 
   handleName(e) {
-    // console.log('e', e.target.value);
-    // this.setState({'name': e.target.value});
-    // this.props.handleName(this.state.name);
+    this.setState({'name': e.target.value});
+    this.props.handleName(this.state.name);
 
   }
 
   handleNumber(e) {
-    // this.setState({'number': e.target.value});
-    // this.props.handleNumber(this.state.number);
+    this.setState({'number': e.target.value});
+    this.props.handleNumber(this.state.number);
   }
 
   render(){
     return(
-    <div>
+      <div className="well">
       <div className="control-group">
         <label className="control-label" htmlFor="email">Name</label>
         <div className="controls">
-          <input id="name" name="name" type="text" placeholder="" className="input-xlarge" value={this.state.name} onChange={this.props.handleName}/>
+          <input id="name" name="name" type="text" placeholder="" className="input-xlarge" required="" value={this.state.name} onChange={this.handleName}/>
 
         </div>
       </div>
@@ -152,7 +133,7 @@ class AccountInputFields extends React.Component {
       <div className="control-group">
         <label className="control-label" htmlFor="number">Phone Number</label>
         <div className="controls">
-          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" value={this.state.number} onChange={this.props.handleNumber}/>
+          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" required="" value={this.state.number} onChange={this.handleNumber}/>
 
         </div>
       </div>
@@ -165,7 +146,7 @@ class AccountInputFields extends React.Component {
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
       </div>
     </div>
-  </div>
+    </div>
     )
   }
 };

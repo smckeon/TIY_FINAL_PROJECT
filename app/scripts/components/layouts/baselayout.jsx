@@ -63,7 +63,7 @@ class LoggedInNavItem extends React.Component{
   logout(){
     User.logout();
     localStorage.clear();
-    Backbone.history.navigate('#', {trigger: true});
+    Backbone.history.navigate('#/auth', {trigger: true});
   }
   render(title){
     return(

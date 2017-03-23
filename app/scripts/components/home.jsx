@@ -22,12 +22,12 @@ class AboutUs extends React.Component {
   render(){
     return(
     <div>
-      <div className="col-md-push-3 col-md-6 about_us">
+      <div className="col-md-push-3 col-md-6 col-lg-push-3 col-lg-6 about_us">
         <div className='then'>
           <h3 className="about_us_slogan">Bringing people together for the love of the game!</h3>
         </div>
         <div className="then">
-          <p>_Futbol Finder was designed for you, the soccer player! We at _futbol finder
+          <p>_futbol finder was designed for you, the soccer player! We
           share the pride in collectively bringing people together to play.
           Our platform is simple. You log in or sign up, modify your profile,
           and then create local pick up matches for other people to locate! Furthermore,

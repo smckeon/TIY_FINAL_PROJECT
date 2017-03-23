@@ -40,15 +40,17 @@ class AuthContainer extends React.Component {
         <div className="container auth_contain">
           <div className="row">
            <div className="col-md-12">
-              <div className="col-md-push-2 col-md-4">
+              <div className="col-md-push-3 col-md-6">
                 <div className="well">
 
                  <Login action={this.login} submitBtn='Login' title = 'Please Login' />
 
                </div>
                </div>
+               </div>
 
-               <div className="col-md-push-2 col-md-4">
+               <div className="row">
+               <div className="col-md-push-3 col-md-6">
                <div className="well">
 
                  <SignUp action={this.createNewAccount} submitBtn='Sign Up' title = 'No Account? Sign Up!' />

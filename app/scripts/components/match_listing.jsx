@@ -72,7 +72,7 @@ class MatchListingModal extends React.Component{
                         <li>Listing of attending players by username.</li>
                       </ul>
                   </div>
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">X</button>
+                  <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
               </div>
           </div>
       </div>
@@ -80,22 +80,7 @@ class MatchListingModal extends React.Component{
 )
   }
 };
-// class PictureWindow extends React.Component{
-//   constructor(props) {
-//     super(props);
-//
-//
-//   }
-//   render() {
-//
-//     return (
-//       <div>
-//         <img src="http://placehold.it/150x150"/>
-//       </div>
-//     )
-//   }
-//
-// }
+
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
@@ -107,7 +92,7 @@ class MatchInfo extends React.Component{
         console.log(match.get("time").iso);
         return (
           <div key={match.cid}>
-            <h5>{moment(match.get("time").iso).format('LT') + " " + moment(match.get("date").iso).format('LL')}</h5>
+            <h5>{moment(match.get("date").iso).format('LL') + " at " + moment(match.get("time").iso).format('LT')}</h5>
             <h5>{match.get("address")}</h5>
             <p>{match.get("description")}</p>
           </div>
