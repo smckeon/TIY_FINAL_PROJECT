@@ -5842,7 +5842,12 @@ img {
   padding-top: 2%; }
 
 .user_home {
-  margin-top: 2%; }
+  margin-top: 2%;
+  margin-bottom: 0px; }
+
+.match_dynamic_details {
+  height: 100px;
+  overflow: auto; }
 
 .match-listing {
   margin-top: 5px; }
@@ -5852,4 +5857,5 @@ img {
 
 .acct_info {
   margin-top: 2%; }
+
 /*# sourceMappingURL=app.css.map */

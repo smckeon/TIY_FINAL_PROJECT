@@ -664,7 +664,7 @@ var moment = require('moment');
 var User = require('../models/user').User;
 var MatchCollection = require('../models/match').MatchCollection;
 
-
+  // { this.state.matchCollection.length != 0 ? <MatchListingModal collection={ this.state.matchCollection }/> : null }
 
 class MatchListing extends React.Component {
   constructor(props){
@@ -682,17 +682,26 @@ class MatchListing extends React.Component {
 
     });
   }
+
+
   render(){
+    var matches;
+    var matchCollection = this.state.matchCollection;
+
+    if (matchCollection.length != 0) {
+      matches = matchCollection.map(function(match){
+        return (
+          React.createElement(MatchInfo, {key: match.cid, match: match})
+        )
+      })
+    }
 
     return(
       React.createElement("div", null, 
         React.createElement("div", {className: "container"}, 
-          React.createElement("div", {className: "match-listing col-md-4"}, 
-            React.createElement("div", {className: "thumbnail"}, 
-               this.state.matchCollection.length != 0 ? React.createElement(MatchListingModal, {collection:  this.state.matchCollection}) : null, 
-              React.createElement(MatchInfo, {matchCollection: this.state.matchCollection})
-              )
-            )
+
+               matches 
+
           ), 
         React.createElement("div", {className: "row"}
       )
@@ -701,74 +710,111 @@ class MatchListing extends React.Component {
   }
 };
 
-class MatchListingModal extends React.Component{
-  constructor(props){
-    super(props);
-
-    this.state = {
-      image: "http://placehold.it/250x250"
-    }
-  }
-
-  render(){
-
-    var user = User.retrieveImage(this.props.collection.models[0].get('owner').objectId).then((response)=>{
-      this.setState({image: response.imageUrl});
-    });
-
-    return(
-React.createElement("div", null, 
-      React.createElement("a", {"data-toggle": "modal", "data-target": ".bs-example-modal-lg"}, React.createElement("img", {src:  this.state.image})), 
-      React.createElement("p", {className: "text-center"}, "Click on image to view who's going!"), 
-
-      React.createElement("div", {className: "modal fade bs-example-modal-lg", tabIndex: "-1", role: "dialog", "aria-labelledby": "myLargeModalLabel"}, 
-          React.createElement("div", {className: "modal-dialog modal-md"}, 
-              React.createElement("div", {className: "modal-content bio-modal"}, 
-                  React.createElement("div", {className: "col-sm-12 col-md-3"}, 
-                      React.createElement("img", {src:  this.state.image})
-                  ), 
-                  React.createElement("div", {className: "col-sm-12 col-md-9"}, 
-                      React.createElement("h1", null, "Players Attending:"), 
-                      React.createElement("ul", null, 
-                        React.createElement("li", null, "Listing of attending players by username.")
-                      )
-                  ), 
-                  React.createElement("button", {type: "button", className: "btn btn-secondary center-block", "data-dismiss": "modal"}, "X")
-              )
-          )
-      )
-)
-)
-  }
-};
-
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
-
+    this.state = {
+      image: "http://placehold.it/250x200"
+    }
+    this.deleteMatch = this.deleteMatch.bind(this);
   }
+
+  deleteMatch(model) {
+    model.destroy();
+  }
+
   render(){
-      var matches = this.props.matchCollection.map((match) => {
-        console.log('match', match);
-        console.log(match.get("time").iso);
-        return (
-          React.createElement("div", {key: match.cid}, 
-            React.createElement("h5", null, moment(match.get("date").iso).format('LL') + " at " + moment(match.get("time").iso).format('LT')), 
-            React.createElement("h5", null, match.get("address")), 
-            React.createElement("p", null, match.get("description"))
-          )
-        )
-      })
+
+
+    var userId = User.currentUser().get('objectId');
+    var modelOwnerId = this.props.match.get('owner').objectId;
+
+    var deleteAccess = userId == modelOwnerId ? true : false;
+
+
     return (
-      React.createElement("div", {className: "caption text-center"}, 
-          matches, 
+  React.createElement("div", {className: "match-listing col-md-4"}, 
+  React.createElement("div", {className: "well"}, 
+    React.createElement("a", {"data-toggle": "modal", "data-target": ".bs-example-modal-lg"}, React.createElement("img", {src:  this.state.image, className: "center-block"})), 
+    React.createElement("p", {className: "text-center"}, "Click on image to view who's going!"), 
 
-
-          React.createElement("a", {href: "#/home", className: "btn btn-success text-right", role: "button"}, "Going!")
+    React.createElement("div", {className: "modal fade bs-example-modal-lg", tabIndex: "-1", role: "dialog", "aria-labelledby": "myLargeModalLabel"}, 
+        React.createElement("div", {className: "modal-dialog modal-md"}, 
+            React.createElement("div", {className: "modal-content bio-modal"}, 
+                React.createElement("div", {className: "col-sm-12 col-md-3"}, 
+                    React.createElement("img", {src:  this.state.image})
+                ), 
+                React.createElement("div", {className: "col-sm-12 col-md-9"}, 
+                    React.createElement("h1", null, "Players Attending:"), 
+                    React.createElement("ul", null, 
+                      React.createElement("li", null, "Listing of attending players by username.")
+                    )
+                ), 
+                React.createElement("button", {type: "button", className: "btn btn-secondary center-block", "data-dismiss": "modal"}, "X")
+            )
         )
+    ), 
+    React.createElement("div", {className: "well user_home"}, 
+      React.createElement("div", {className: "caption text-center"}, 
+        React.createElement("div", {className: "match_dynamic_details"}, 
+        React.createElement("div", {key: this.props.match.cid}, 
+          React.createElement("h5", null, moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')), 
+          React.createElement("h5", null, this.props.match.get("address")), 
+          React.createElement("p", null, this.props.match.get("description"), " ", React.createElement("i", {className: "fa fa-trash", "aria-hidden": "true"}))
+        )
+        ), 
+        React.createElement("input", {type: "button", className: "btn btn-success text-right", value: "Going!"}), 
+        deleteAccess ? React.createElement("input", {type: "button", className: "btn btn-warning text-right", value: "Delete", onClick: (e) => this.deleteMatch(this.props.match)}) : null
+        )
+      )
+    )
+  )
     )
   }
 }
+
+// class MatchListingModal extends React.Component{
+//   constructor(props){
+//     super(props);
+//
+//     this.state = {
+//       image: "http://placehold.it/250x250"
+//     }
+//   }
+//
+//   render(){
+//
+//     var user = User.retrieveImage(this.props.collection.models[0].get('owner').objectId).then((response)=>{
+//       this.setState({image: response.imageUrl});
+//     });
+//
+//     return(
+// <div>
+//       <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src={ this.state.image } /></a>
+//       <p className="text-center">Click on image to view who's going!</p>
+//
+//       <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+//           <div className="modal-dialog modal-md">
+//               <div className="modal-content bio-modal">
+//                   <div className="col-sm-12 col-md-3">
+//                       <img src={ this.state.image } />
+//                   </div>
+//                   <div className="col-sm-12 col-md-9">
+//                       <h1>Players Attending:</h1>
+//                       <ul>
+//                         <li>Listing of attending players by username.</li>
+//                       </ul>
+//                   </div>
+//                   <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
+//               </div>
+//           </div>
+//       </div>
+// </div>
+// )
+//   }
+// };
+
+
 
 module.exports = MatchListing;
 
@@ -797,14 +843,12 @@ class WelcomeContainer extends React.Component {
   render(){
     return(
     React.createElement(BaseLayout, null, 
-
+        React.createElement("div", {className: "well"}, 
           React.createElement("div", {className: "container"}, 
-          React.createElement("div", {className: "well user_home"}, 
             React.createElement("h2", null, "Match Browser for ", User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username'), "   "), 
             React.createElement("h4", null, "Current games are listed below. If no games are listed, create one!")
           )
         ), 
-
         React.createElement(MatchListing, null)
 
     )
@@ -964,6 +1008,7 @@ var User = ParseModel.extend({
   logout: function(){
     var url = parse.BASE_API_URL + '/logout';
     $.post(url).then(event=>{
+      localStorage.removeItem('user');
       console.log('parse user logged out');
     })
   },
