@@ -735,6 +735,8 @@ class MatchInfo extends React.Component{
     return (
   React.createElement("div", {className: "match-listing col-md-4"}, 
   React.createElement("div", {className: "well"}, 
+    deleteAccess ? React.createElement("i", {className: "fa fa-trash", id: "delete_match", "aria-hidden": "true", onClick: (e) => this.deleteMatch(this.props.match)}) : null, 
+    React.createElement("br", null), 
     React.createElement("a", {"data-toggle": "modal", "data-target": ".bs-example-modal-lg"}, React.createElement("img", {src:  this.state.image, className: "center-block"})), 
     React.createElement("p", {className: "text-center"}, "Click on image to view who's going!"), 
 
@@ -760,11 +762,11 @@ class MatchInfo extends React.Component{
         React.createElement("div", {key: this.props.match.cid}, 
           React.createElement("h5", null, moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')), 
           React.createElement("h5", null, this.props.match.get("address")), 
-          React.createElement("p", null, this.props.match.get("description"), " ", React.createElement("i", {className: "fa fa-trash", "aria-hidden": "true"}))
+          React.createElement("p", null, this.props.match.get("description"), " ")
         )
         ), 
-        React.createElement("input", {type: "button", className: "btn btn-success text-right", value: "Going!"}), 
-        deleteAccess ? React.createElement("input", {type: "button", className: "btn btn-warning text-right", value: "Delete", onClick: (e) => this.deleteMatch(this.props.match)}) : null
+        React.createElement("input", {type: "button", className: "btn btn-success text-right", value: "Going!"})
+
         )
       )
     )
@@ -772,7 +774,6 @@ class MatchInfo extends React.Component{
     )
   }
 }
-
 // class MatchListingModal extends React.Component{
 //   constructor(props){
 //     super(props);

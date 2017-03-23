@@ -5841,6 +5841,13 @@ img {
 .auth_contain {
   padding-top: 2%; }
 
+#delete_match {
+  float: right; }
+
+#delete_match:hover {
+  float: right;
+  cursor: pointer; }
+
 .user_home {
   margin-top: 2%;
   margin-bottom: 0px; }
