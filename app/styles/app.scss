@@ -119,6 +119,15 @@ $tan: #d0c4b1;
 
 // Match Browser
 
+#delete_match {
+  float: right;
+}
+
+#delete_match:hover {
+  float: right;
+  cursor: pointer;
+}
+
 .user_home {
   margin-top: 2%;
   margin-bottom: 0px;

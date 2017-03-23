@@ -74,6 +74,8 @@ class MatchInfo extends React.Component{
     return (
   <div className="match-listing col-md-4">
   <div className="well">
+    {deleteAccess ? <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.deleteMatch(this.props.match)}/> : null}
+    <br />
     <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src= { this.state.image } className="center-block" /></a>
     <p className="text-center">Click on image to view who's going!</p>
 
@@ -99,11 +101,11 @@ class MatchInfo extends React.Component{
         <div key={this.props.match.cid}>
           <h5>{moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')}</h5>
           <h5>{this.props.match.get("address")}</h5>
-          <p>{this.props.match.get("description")} <i className="fa fa-trash" aria-hidden="true" /></p>
+          <p>{this.props.match.get("description")} </p>
         </div>
         </div>
         <input type='button' className="btn btn-success text-right" value="Going!" />
-        {deleteAccess ? <input type='button' className="btn btn-warning text-right" value="Delete" onClick={(e) => this.deleteMatch(this.props.match)}/> : null }
+
         </div>
       </div>
     </div>
@@ -111,7 +113,6 @@ class MatchInfo extends React.Component{
     )
   }
 }
-
 // class MatchListingModal extends React.Component{
 //   constructor(props){
 //     super(props);
