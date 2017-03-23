@@ -3,7 +3,7 @@ var moment = require('moment');
 var User = require('../models/user').User;
 var MatchCollection = require('../models/match').MatchCollection;
 
-
+  // { this.state.matchCollection.length != 0 ? <MatchListingModal collection={ this.state.matchCollection }/> : null }
 
 class MatchListing extends React.Component {
   constructor(props){
@@ -21,17 +21,26 @@ class MatchListing extends React.Component {
 
     });
   }
+
+
   render(){
+    var matches;
+    var matchCollection = this.state.matchCollection;
+
+    if (matchCollection.length != 0) {
+      matches = matchCollection.map(function(match){
+        return (
+          <MatchInfo key={match.cid} match={match}/>
+        )
+      })
+    }
 
     return(
       <div>
         <div className="container">
-          <div className="match-listing col-md-4">
-            <div className="thumbnail">
-              { this.state.matchCollection.length != 0 ? <MatchListingModal collection={ this.state.matchCollection }/> : null }
-              <MatchInfo matchCollection={this.state.matchCollection}/>
-              </div>
-            </div>
+
+              { matches }
+
           </div>
         <div className="row">
       </div>
@@ -40,73 +49,110 @@ class MatchListing extends React.Component {
   }
 };
 
-class MatchListingModal extends React.Component{
-  constructor(props){
-    super(props);
-
-    this.state = {
-      image: "http://placehold.it/250x250"
-    }
-  }
-
-  render(){
-
-    var user = User.retrieveImage(this.props.collection.models[0].get('owner').objectId).then((response)=>{
-      this.setState({image: response.imageUrl});
-    });
-
-    return(
-<div>
-      <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src={ this.state.image } /></a>
-      <p className="text-center">Click on image to view who's going!</p>
-
-      <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-          <div className="modal-dialog modal-md">
-              <div className="modal-content bio-modal">
-                  <div className="col-sm-12 col-md-3">
-                      <img src={ this.state.image } />
-                  </div>
-                  <div className="col-sm-12 col-md-9">
-                      <h1>Players Attending:</h1>
-                      <ul>
-                        <li>Listing of attending players by username.</li>
-                      </ul>
-                  </div>
-                  <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
-              </div>
-          </div>
-      </div>
-</div>
-)
-  }
-};
-
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
-
+    this.state = {
+      image: "http://placehold.it/250x200"
+    }
+    this.deleteMatch = this.deleteMatch.bind(this);
   }
+
+  deleteMatch(model) {
+    model.destroy();
+  }
+
   render(){
-      var matches = this.props.matchCollection.map((match) => {
-        console.log('match', match);
-        console.log(match.get("time").iso);
-        return (
-          <div key={match.cid}>
-            <h5>{moment(match.get("date").iso).format('LL') + " at " + moment(match.get("time").iso).format('LT')}</h5>
-            <h5>{match.get("address")}</h5>
-            <p>{match.get("description")}</p>
-          </div>
-        )
-      })
+
+
+    var userId = User.currentUser().get('objectId');
+    var modelOwnerId = this.props.match.get('owner').objectId;
+
+    var deleteAccess = userId == modelOwnerId ? true : false;
+
+
     return (
-      <div className="caption text-center">
-          {matches}
+  <div className="match-listing col-md-4">
+  <div className="well">
+    <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src= { this.state.image } className="center-block" /></a>
+    <p className="text-center">Click on image to view who's going!</p>
 
-
-          <a href="#/home" className="btn btn-success text-right" role="button">Going!</a>
+    <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div className="modal-dialog modal-md">
+            <div className="modal-content bio-modal">
+                <div className="col-sm-12 col-md-3">
+                    <img src={ this.state.image } />
+                </div>
+                <div className="col-sm-12 col-md-9">
+                    <h1>Players Attending:</h1>
+                    <ul>
+                      <li>Listing of attending players by username.</li>
+                    </ul>
+                </div>
+                <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
+            </div>
         </div>
+    </div>
+    <div className="well user_home">
+      <div className="caption text-center">
+        <div className="match_dynamic_details">
+        <div key={this.props.match.cid}>
+          <h5>{moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')}</h5>
+          <h5>{this.props.match.get("address")}</h5>
+          <p>{this.props.match.get("description")} <i className="fa fa-trash" aria-hidden="true" /></p>
+        </div>
+        </div>
+        <input type='button' className="btn btn-success text-right" value="Going!" />
+        {deleteAccess ? <input type='button' className="btn btn-warning text-right" value="Delete" onClick={(e) => this.deleteMatch(this.props.match)}/> : null }
+        </div>
+      </div>
+    </div>
+  </div>
     )
   }
 }
+
+// class MatchListingModal extends React.Component{
+//   constructor(props){
+//     super(props);
+//
+//     this.state = {
+//       image: "http://placehold.it/250x250"
+//     }
+//   }
+//
+//   render(){
+//
+//     var user = User.retrieveImage(this.props.collection.models[0].get('owner').objectId).then((response)=>{
+//       this.setState({image: response.imageUrl});
+//     });
+//
+//     return(
+// <div>
+//       <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src={ this.state.image } /></a>
+//       <p className="text-center">Click on image to view who's going!</p>
+//
+//       <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+//           <div className="modal-dialog modal-md">
+//               <div className="modal-content bio-modal">
+//                   <div className="col-sm-12 col-md-3">
+//                       <img src={ this.state.image } />
+//                   </div>
+//                   <div className="col-sm-12 col-md-9">
+//                       <h1>Players Attending:</h1>
+//                       <ul>
+//                         <li>Listing of attending players by username.</li>
+//                       </ul>
+//                   </div>
+//                   <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
+//               </div>
+//           </div>
+//       </div>
+// </div>
+// )
+//   }
+// };
+
+
 
 module.exports = MatchListing;

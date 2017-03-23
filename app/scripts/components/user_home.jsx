@@ -21,14 +21,12 @@ class WelcomeContainer extends React.Component {
   render(){
     return(
     <BaseLayout>
-
+        <div className="well">
           <div className="container">
-          <div className="well user_home">
             <h2>Match Browser for {User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username')}   </h2>
             <h4>Current games are listed below. If no games are listed, create one!</h4>
           </div>
         </div>
-
         <MatchListing />
 
     </BaseLayout>
