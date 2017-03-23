@@ -31,48 +31,30 @@ class AccountInfoContainer extends React.Component {
   }
 
   handleImage(file) {
-    // var pic = this.state.pic;
-    // var image = new ParseFile(pic);
-    // image.save({}, {
-    //   data: pic
-    // }).then((response)=>{
-    //   var imageUrl = response.url;
-
-      // this.state.user.set({'imageUrl': imageUrl});
-    // });
-
-    // this.setState({'pic': file});
+    this.setState({'pic': file});
   }
 
-  handleName(e) {
-    console.log(e.target.value);
-    this.setState({'name': e.target.value});
-    // this.state.user.set({'name': name});
+  handleName(name) {
+    this.state.user.set({'name': name});
   }
 
-  handleNumber(e) {
-    this.setState({'number': e.target.value});
-    // this.state.user.set({'number': number});
+  handleNumber(number) {
+    this.state.user.set({'number': number});
   }
 
 
   handleSave(e) {
     e.preventDefault();
 
+    var pic = this.state.pic;
+    var image = new ParseFile(pic);
+    image.save({}, {
+      data: pic
+    }).then((response)=>{
+      var imageUrl = response.url;
 
-    // var pic = this.state.pic;
-    // var image = new ParseFile(pic);
-    // image.save({}, {
-    //   data: pic
-    // }).then((response)=>{
-    //   var imageUrl = response.url;
-    //
-    //   this.state.user.set({'imageUrl': imageUrl});
-    // });
-
-    // this.state.user.set({'imageUrl': imageUrl});
-
-    this.state.user.set(this.state);
+      this.state.user.set({'imageUrl': imageUrl});
+    });
 
     this.state.user.save();
   }
@@ -81,9 +63,9 @@ class AccountInfoContainer extends React.Component {
 
     return (
       React.createElement(BaseLayout, null, 
-        React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "container acct_info"}, 
           React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "well acct_info"}, 
+            React.createElement("div", {className: "well"}, 
 
             React.createElement("form", {className: "form-horizontal", encType: "multipart/form-data"}, 
 
@@ -99,32 +81,7 @@ class AccountInfoContainer extends React.Component {
 
                   React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
 
-                    React.createElement(AccountInputFields, {handleName: this.handleName, handleNumber: this.handleNumber, handleSave: this.handleSave}), 
-
-                      React.createElement("div", {className: "control-group"}, 
-                        React.createElement("label", {className: "control-label", htmlFor: "email"}, "Name"), 
-                        React.createElement("div", {className: "controls"}, 
-                          React.createElement("input", {id: "name", name: "name", type: "text", placeholder: "", className: "input-xlarge", value: this.state.name, onChange: this.handleName})
-
-                        )
-                      ), 
-
-                      React.createElement("div", {className: "control-group"}, 
-                        React.createElement("label", {className: "control-label", htmlFor: "number"}, "Phone Number"), 
-                        React.createElement("div", {className: "controls"}, 
-                          React.createElement("input", {id: "number", name: "number", type: "text", placeholder: "555-555-5555", maxLength: "12", className: "input-xlarge", value: this.state.number, onChange: this.handleNumber})
-
-                        )
-                      ), 
-
-
-                    React.createElement("div", {className: "control-group"}, 
-                      React.createElement("label", {className: "control-label", htmlFor: "buttonid"}), 
-                      React.createElement("div", {className: "controls"}, 
-                        React.createElement("button", {id: "button1id", name: "button1id", className: "btn btn-primary", onClick: this.handleSave}, "Update"), 
-                        React.createElement("button", {id: "button2id", name: "button2id", className: "btn btn-default"}, "Cancel")
-                      )
-                    )
+                    React.createElement(AccountInputFields, {handleName: this.handleName, handleNumber: this.handleNumber, handleSave: this.handleSave})
 
                   )
 
@@ -134,7 +91,7 @@ class AccountInfoContainer extends React.Component {
         	)
         )
       )
-      )
+    )
     )
   }
 };
@@ -158,45 +115,44 @@ class AccountInputFields extends React.Component {
   }
 
   handleName(e) {
-    // console.log('e', e.target.value);
-    // this.setState({'name': e.target.value});
-    // this.props.handleName(this.state.name);
+    this.setState({'name': e.target.value});
+    this.props.handleName(this.state.name);
 
   }
 
   handleNumber(e) {
-    // this.setState({'number': e.target.value});
-    // this.props.handleNumber(this.state.number);
+    this.setState({'number': e.target.value});
+    this.props.handleNumber(this.state.number);
   }
 
   render(){
     return(
-    React.createElement("div", null
-      /*<div className="control-group">
-        <label className="control-label" htmlFor="email">Name</label>
-        <div className="controls">
-          <input id="name" name="name" type="text" placeholder="" className="input-xlarge" value={this.state.name} onChange={this.props.handleName}/>
+      React.createElement("div", {className: "well"}, 
+      React.createElement("div", {className: "control-group"}, 
+        React.createElement("label", {className: "control-label", htmlFor: "email"}, "Name"), 
+        React.createElement("div", {className: "controls"}, 
+          React.createElement("input", {id: "name", name: "name", type: "text", placeholder: "", className: "input-xlarge", required: "", value: this.state.name, onChange: this.handleName})
 
-        </div>
-      </div>
+        )
+      ), 
 
-      <div className="control-group">
-        <label className="control-label" htmlFor="number">Phone Number</label>
-        <div className="controls">
-          <input id="number" name="number" type="text" placeholder="555-555-5555" maxLength="12" className="input-xlarge" value={this.state.number} onChange={this.props.handleNumber}/>
+      React.createElement("div", {className: "control-group"}, 
+        React.createElement("label", {className: "control-label", htmlFor: "number"}, "Phone Number"), 
+        React.createElement("div", {className: "controls"}, 
+          React.createElement("input", {id: "number", name: "number", type: "text", placeholder: "555-555-5555", maxLength: "12", className: "input-xlarge", required: "", value: this.state.number, onChange: this.handleNumber})
 
-        </div>
-      </div>
+        )
+      ), 
 
 
-    <div className="control-group">
-      <label className="control-label" htmlFor="buttonid"></label>
-      <div className="controls">
-        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
-        <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
-      </div>
-    </div>*/
-  )
+    React.createElement("div", {className: "control-group"}, 
+      React.createElement("label", {className: "control-label", htmlFor: "buttonid"}), 
+      React.createElement("div", {className: "controls"}, 
+        React.createElement("button", {id: "button1id", name: "button1id", className: "btn btn-primary", onClick: this.props.handleSave}, "Update"), 
+        React.createElement("button", {id: "button2id", name: "button2id", className: "btn btn-default"}, "Cancel")
+      )
+    )
+    )
     )
   }
 };
@@ -287,15 +243,17 @@ class AuthContainer extends React.Component {
         React.createElement("div", {className: "container auth_contain"}, 
           React.createElement("div", {className: "row"}, 
            React.createElement("div", {className: "col-md-12"}, 
-              React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
+              React.createElement("div", {className: "col-md-push-3 col-md-6"}, 
                 React.createElement("div", {className: "well"}, 
 
                  React.createElement(Login, {action: this.login, submitBtn: "Login", title: "Please Login"})
 
                )
+               )
                ), 
 
-               React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
+               React.createElement("div", {className: "row"}, 
+               React.createElement("div", {className: "col-md-push-3 col-md-6"}, 
                React.createElement("div", {className: "well"}, 
 
                  React.createElement(SignUp, {action: this.createNewAccount, submitBtn: "Sign Up", title: "No Account? Sign Up!"})
@@ -524,12 +482,12 @@ class AboutUs extends React.Component {
   render(){
     return(
     React.createElement("div", null, 
-      React.createElement("div", {className: "col-md-push-3 col-md-6 about_us"}, 
+      React.createElement("div", {className: "col-md-push-3 col-md-6 col-lg-push-3 col-lg-6 about_us"}, 
         React.createElement("div", {className: "then"}, 
           React.createElement("h3", {className: "about_us_slogan"}, "Bringing people together for the love of the game!")
         ), 
         React.createElement("div", {className: "then"}, 
-          React.createElement("p", null, "_Futbol Finder was designed for you, the soccer player! We at _futbol finder" + ' ' +
+          React.createElement("p", null, "_futbol finder was designed for you, the soccer player! We" + ' ' +
           "share the pride in collectively bringing people together to play." + ' ' +
           "Our platform is simple. You log in or sign up, modify your profile," + ' ' +
           "and then create local pick up matches for other people to locate! Furthermore," + ' ' +
@@ -662,7 +620,7 @@ class LoggedInNavItem extends React.Component{
   logout(){
     User.logout();
     localStorage.clear();
-    Backbone.history.navigate('#', {trigger: true});
+    Backbone.history.navigate('#/auth', {trigger: true});
   }
   render(title){
     return(
@@ -775,7 +733,7 @@ React.createElement("div", null,
                         React.createElement("li", null, "Listing of attending players by username.")
                       )
                   ), 
-                  React.createElement("button", {type: "button", className: "btn btn-secondary", "data-dismiss": "modal"}, "X")
+                  React.createElement("button", {type: "button", className: "btn btn-secondary center-block", "data-dismiss": "modal"}, "X")
               )
           )
       )
@@ -783,22 +741,7 @@ React.createElement("div", null,
 )
   }
 };
-// class PictureWindow extends React.Component{
-//   constructor(props) {
-//     super(props);
-//
-//
-//   }
-//   render() {
-//
-//     return (
-//       <div>
-//         <img src="http://placehold.it/150x150"/>
-//       </div>
-//     )
-//   }
-//
-// }
+
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
@@ -810,7 +753,7 @@ class MatchInfo extends React.Component{
         console.log(match.get("time").iso);
         return (
           React.createElement("div", {key: match.cid}, 
-            React.createElement("h5", null, moment(match.get("time").iso).format('LT') + " " + moment(match.get("date").iso).format('LL')), 
+            React.createElement("h5", null, moment(match.get("date").iso).format('LL') + " at " + moment(match.get("time").iso).format('LT')), 
             React.createElement("h5", null, match.get("address")), 
             React.createElement("p", null, match.get("description"))
           )
@@ -1084,7 +1027,7 @@ var ReactDOM = require('react-dom');
 var AuthContainer = require('../scripts/components/auth.jsx');
 var WelcomeContainer = require('../scripts/components/user_home.jsx');
 var HomeContainer = require('../scripts/components/home.jsx');
-var AccountInfoContainer = require('../scripts/components/account_infoTEST.jsx');
+var AccountInfoContainer = require('../scripts/components/account_info.jsx');
 var CreateMatch = require('../scripts/components/create_match.jsx');
 
 // Importing our User Model
@@ -1170,7 +1113,7 @@ module.exports = {
   appRouter
 }
 
-},{"../scripts/components/account_infoTEST.jsx":2,"../scripts/components/auth.jsx":3,"../scripts/components/create_match.jsx":4,"../scripts/components/home.jsx":5,"../scripts/components/user_home.jsx":8,"./models/user":13,"./parse":14,"backbone":116,"react":425,"react-dom":277}],16:[function(require,module,exports){
+},{"../scripts/components/account_info.jsx":2,"../scripts/components/auth.jsx":3,"../scripts/components/create_match.jsx":4,"../scripts/components/home.jsx":5,"../scripts/components/user_home.jsx":8,"./models/user":13,"./parse":14,"backbone":116,"react":425,"react-dom":277}],16:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/array/from"), __esModule: true };
 },{"core-js/library/fn/array/from":30}],17:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
