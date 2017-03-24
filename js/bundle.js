@@ -48,9 +48,9 @@ class AccountInfoContainer extends React.Component {
       }).then((response)=>{
         var imageUrl = response.url;
         this.state.user.set({'imageUrl': imageUrl});
+        this.state.user.save();
+        return
       });
-      this.state.user.save();
-      return
     }
     this.state.user.save();
   }
@@ -1017,7 +1017,7 @@ var User = ParseModel.extend({
   logout: function(){
     var url = parse.BASE_API_URL + '/logout';
     $.post(url).then(event=>{
-      localStorage.clear('user');
+      localStorage.removeItem('user');
       console.log('parse user logged out');
     })
   },
