@@ -43,6 +43,20 @@ var AppRouter = Backbone.Router.extend({
    }
 
  },
+
+   execute: function(callback, args, name) {
+    var user = User.currentUser();
+
+    if(!user) {
+      if(['index','auth'].indexOf(name) === -1){
+        this.navigate('', { trigger: true });
+        return false;
+      }
+    }
+
+    return Backbone.Router.prototype.execute.apply(this, arguments);
+  },
+
  // Using React to render our route components
   index(){
     ReactDOM.render(
