@@ -42,9 +42,9 @@ class AccountInfoContainer extends React.Component {
       }).then((response)=>{
         var imageUrl = response.url;
         this.state.user.set({'imageUrl': imageUrl});
+        this.state.user.save();
+        return
       });
-      this.state.user.save();
-      return
     }
     this.state.user.save();
   }
