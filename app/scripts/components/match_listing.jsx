@@ -16,21 +16,29 @@ class MatchListing extends React.Component {
     }
 
     matchCollection.fetch().done((response)=> {
-
       this.setState({matchCollection : matchCollection});
-
     });
+
+    this.deleteMatch = this.deleteMatch.bind(this);
+  }
+
+  deleteMatch(model) {
+    var collection = this.state.matchCollection;
+    collection.remove(model);
+    this.setState({ matchCollection: collection });
+    model.destroy();
   }
 
 
   render(){
     var matches;
     var matchCollection = this.state.matchCollection;
+    var self = this;
 
     if (matchCollection.length != 0) {
       matches = matchCollection.map(function(match){
         return (
-          <MatchInfo key={match.cid} match={match}/>
+          <MatchInfo key={match.cid} match={match} deleteMatch={self.deleteMatch} />
         )
       })
     }
@@ -59,8 +67,7 @@ class MatchInfo extends React.Component{
   }
 
   deleteMatch(model) {
-    model.destroy();
-    {/*this.forceUpdate();*/}
+    this.props.deleteMatch(model);
   }
 
   render(){
