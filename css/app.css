@@ -5769,6 +5769,16 @@ img {
 * {
   font-family: "Open Sans", sans-serif; }
 
+.homebg {
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  background: url("../images/grassbg.jpg") no-repeat center center;
+  background-size: cover; }
+
 .nav > li > a:hover {
   text-decoration: none;
   background-color: #3c763d; }

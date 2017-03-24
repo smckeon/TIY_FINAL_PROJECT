@@ -570,7 +570,7 @@ class BaseLayout extends React.Component {
     return(
       React.createElement("div", null, 
         React.createElement(Header, null), 
-        React.createElement("img", {className: "homebg", src: "./images/grassbg.jpg"}), 
+        React.createElement("img", {className: "homebg", src: ""}), 
           this.props.children, 
         React.createElement(Footer, null)
       )
