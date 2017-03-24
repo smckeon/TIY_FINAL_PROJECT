@@ -79,7 +79,7 @@ var AppRouter = Backbone.Router.extend({
     )
   },
 
-  accountInfo(){
+  accountInfo(id){
     ReactDOM.render(
       React.createElement(AccountInfoContainer),
       document.getElementById('app')

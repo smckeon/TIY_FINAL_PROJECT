@@ -10,8 +10,11 @@ class AccountInfoContainer extends React.Component {
 
   constructor(props){
     super(props);
-
     var user = User.currentUser();
+
+    // if(this.props.id) {
+    //   console.log('here is an id', this.props.id);
+    // }
 
     this.state = {
       pic: null,
@@ -19,8 +22,6 @@ class AccountInfoContainer extends React.Component {
     }
 
     this.handleImage = this.handleImage.bind(this);
-    this.handleName = this.handleName.bind(this);
-    this.handleNumber = this.handleNumber.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
@@ -28,28 +29,23 @@ class AccountInfoContainer extends React.Component {
     this.setState({'pic': file});
   }
 
-  handleName(name) {
-    this.state.user.set({'name': name});
-  }
+  handleSave(config) {
+    this.state.user.set({'name': config.name, 'number': config.number });
 
-  handleNumber(number) {
-    this.state.user.set({'number': number});
-  }
+    if(this.state.pic) {
 
+      var pic = this.state.pic;
+      var image = new ParseFile(pic);
 
-  handleSave(e) {
-    e.preventDefault();
-
-    var pic = this.state.pic;
-    var image = new ParseFile(pic);
-    image.save({}, {
-      data: pic
-    }).then((response)=>{
-      var imageUrl = response.url;
-
-      this.state.user.set({'imageUrl': imageUrl});
-    });
-
+      image.save({}, {
+        data: pic
+      }).then((response)=>{
+        var imageUrl = response.url;
+        this.state.user.set({'imageUrl': imageUrl});
+      });
+      this.state.user.save();
+      return
+    }
     this.state.user.save();
   }
 
@@ -75,7 +71,7 @@ class AccountInfoContainer extends React.Component {
 
                   <div className="col-md-push-3 col-md-4">
 
-                    <AccountInputFields handleName={this.handleName} handleNumber={this.handleNumber} handleSave={this.handleSave}/>
+                    <AccountInputFields handleSave={this.handleSave}/>
 
                   </div>
 
@@ -98,7 +94,6 @@ class AccountInputFields extends React.Component {
 
     var user = User.currentUser();
 
-
     this.state = {
       name: user.get('name') || null,
       number: user.get('number') || null
@@ -106,17 +101,20 @@ class AccountInputFields extends React.Component {
 
     this.handleName = this.handleName.bind(this);
     this.handleNumber = this.handleNumber.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleName(e) {
     this.setState({'name': e.target.value});
-    this.props.handleName(this.state.name);
-
   }
 
   handleNumber(e) {
     this.setState({'number': e.target.value});
-    this.props.handleNumber(this.state.number);
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    this.props.handleSave(this.state)
   }
 
   render(){
@@ -142,7 +140,7 @@ class AccountInputFields extends React.Component {
     <div className="control-group">
       <label className="control-label" htmlFor="buttonid"></label>
       <div className="controls">
-        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.props.handleSave}>Update</button>
+        <button id="button1id" name="button1id" className="btn btn-primary" onClick={this.handleSave}>Update</button>
         <button id="button2id" name="button2id" className="btn btn-default">Cancel</button>
       </div>
     </div>
