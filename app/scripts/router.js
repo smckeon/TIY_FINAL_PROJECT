@@ -24,7 +24,7 @@ var AppRouter = Backbone.Router.extend({
     'home': 'userHome',
     'account': 'accountInfo',
     'create': 'createMatch',
-    'games': 'gamesListing'
+    'matches': 'matchListing'
   },
   // Initializing a user who will be logged in
   initialize: function(){
@@ -79,7 +79,7 @@ var AppRouter = Backbone.Router.extend({
     )
   },
 
-  gamesListing(){
+  matchListing(){
 
   },
 

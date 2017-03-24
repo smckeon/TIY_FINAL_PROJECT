@@ -65,6 +65,7 @@ class MatchInfo extends React.Component{
 
   render(){
 
+    console.log('props',moment(this.props.match.get("date").iso).format('LT'));
 
     var userId = User.currentUser().get('objectId');
     var modelOwnerId = this.props.match.get('owner').objectId;
@@ -100,7 +101,7 @@ class MatchInfo extends React.Component{
       <div className="caption text-center">
         <div className="match_dynamic_details">
         <div key={this.props.match.cid}>
-          <h5>{moment(this.props.match.get("date")).format('LL') + " on " + moment(this.props.match.get("time2").iso).format('dddd, h:mm a')}</h5>
+          <h5>{moment(this.props.match.get("date").iso).format('LL') + " on " + moment(this.props.match.get("date").iso).format("dddd, h:mm")}</h5>
           <h5>{this.props.match.get("address")}</h5>
           <p>{this.props.match.get("description")} </p>
         </div>

@@ -35,7 +35,7 @@ var User = ParseModel.extend({
   logout: function(){
     var url = parse.BASE_API_URL + '/logout';
     $.post(url).then(event=>{
-      localStorage.removeItem('user');
+      localStorage.clear('user');
       console.log('parse user logged out');
     })
   },

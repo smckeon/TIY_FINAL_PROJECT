@@ -1,4 +1,5 @@
 var React = require('react');
+var Backbone = require('backbone')
 
 var BaseLayout = require('./layouts/baselayout.jsx');
 var Match = require('../models/match').Match;
@@ -23,20 +24,11 @@ class CreateMatch extends React.Component {
   }
 
   _handleDate(e) {
-
-    var date = new Date(e.target.value);
-
-    var dateParse = {
-      "__type" : "Date",
-      "iso" : date
-    }
-
-    this.setState({'date': dateParse})
+    this.setState({'date': e.target.value});
   }
 
   _handleTime(e) {
-    console.log(e.target.value);
-    this.setState({'time2': e.target.value})
+    this.setState({'time': e.target.value});
   }
 
   _handleAddress(e) {
@@ -48,13 +40,20 @@ class CreateMatch extends React.Component {
   }
 
   _createMatch() {
-    var match = new Match(this.state);
     var user = User.currentUser();
+    var match = new Match(this.state);
+    var newDate = new Date(this.state.date + ' ' + this.state.time);
 
+    var dateParse = {
+      "__type" : "Date",
+      "iso" : newDate
+    };
+
+    match.set('date',  dateParse );
     match.setPointer('owner', '_User', user.get('objectId'));
 
     match.save().then(function() {
-      console.log('match', match);
+      Backbone.history.navigate('/home', {trigger: true});
     });
 
   }
