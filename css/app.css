@@ -5816,7 +5816,7 @@ img {
   position: absolute;
   z-index: -1; }
 
-.then {
+.text_backsplash {
   background-color: rgba(26, 21, 21, 0.3);
   border-radius: 10px;
   padding-left: 10px; }
@@ -5828,6 +5828,7 @@ img {
   margin-bottom: 25px; }
 
 .about_us {
+  display: block;
   font-family: "Open Sans", sans-serif;
   color: #bdbaba;
   font-size: 14px; }
@@ -5836,8 +5837,19 @@ img {
   bottom: 0px; }
 
 #myCarousel {
+  position: relative;
+  left: 120px;
   box-shadow: 5px -2px 25px 8px #8e8473; }
 
+@media (max-width: 400px) {
+  #myCarousel {
+    position: relative;
+    left: 0px;
+    width: 85vw; } }
+@media (min-width: 1420px) {
+  #myCarousel {
+    position: relative;
+    left: 200px; } }
 .auth_contain {
   padding-top: 2%; }
 
@@ -5848,9 +5860,12 @@ img {
   float: right;
   cursor: pointer; }
 
-.user_home {
+.user_listing {
   margin-top: 2%;
   margin-bottom: 0px; }
+
+.user_welcome {
+  border-radius: 0px; }
 
 .match_dynamic_details {
   height: 100px;
@@ -5864,4 +5879,5 @@ img {
 
 .acct_info {
   margin-top: 2%; }
+
 /*# sourceMappingURL=app.css.map */

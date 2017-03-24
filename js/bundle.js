@@ -395,8 +395,8 @@ class CreateMatch extends React.Component {
   }
 
   _handleTime(e) {
-
-
+    console.log(e.target.value);
+    this.setState({'time2': e.target.value})
   }
 
   _handleAddress(e) {
@@ -481,71 +481,73 @@ class HomeContainer extends React.Component {
 class AboutUs extends React.Component {
   render(){
     return(
-    React.createElement("div", null, 
-      React.createElement("div", {className: "col-md-push-3 col-md-6 col-lg-push-3 col-lg-6 about_us"}, 
-        React.createElement("div", {className: "then"}, 
-          React.createElement("h3", {className: "about_us_slogan"}, "Bringing people together for the love of the game!")
-        ), 
-        React.createElement("div", {className: "then"}, 
-          React.createElement("p", null, "_futbol finder was designed for you, the soccer player! We" + ' ' +
-          "share the pride in collectively bringing people together to play." + ' ' +
-          "Our platform is simple. You log in or sign up, modify your profile," + ' ' +
-          "and then create local pick up matches for other people to locate! Furthermore," + ' ' +
-          "other users can see your created matches and designate if they" + ' ' +
-          "will be attending. ")
-        ), 
-        React.createElement("div", {className: "container"}, 
-            React.createElement("div", {className: "home-picture col-md-push-1 col-md-4"}, 
+      React.createElement("div", null, 
+        React.createElement("div", {className: "col-md-push-3 col-md-6 col-lg-push-3 col-lg-6 about_us"}, 
+          React.createElement("div", {className: "text_backsplash"}, 
+            React.createElement("h3", {className: "about_us_slogan"}, "Bringing people together for the love of the game!")
+          ), 
+          React.createElement("div", {className: "text_backsplash"}, 
+            React.createElement("p", null, "_futbol finder was designed for you, the soccer player! We" + ' ' +
+            "share the pride in collectively bringing people together to play." + ' ' +
+            "Our platform is simple. You log in or sign up, modify your profile," + ' ' +
+            "and then create local pick up matches for other people to locate! Furthermore," + ' ' +
+            "other users can see your created matches and designate if they" + ' ' +
+            "will be attending. ")
+          ), 
+          React.createElement("div", {className: "container"}, 
+            React.createElement("div", {className: "row"}, 
+              React.createElement("div", {className: "home-picture col-xs-6 col-sm-4 col-md-4"}, 
 
-              React.createElement("br", null), 
-              React.createElement("div", {id: "myCarousel", className: "carousel slide", "data-ride": "carousel"}, 
+                React.createElement("br", null), 
+                React.createElement("div", {id: "myCarousel", className: "carousel slide", "data-ride": "carousel"}, 
 
-                React.createElement("ol", {className: "carousel-indicators"}, 
-                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "0", className: "active"}), 
-                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "1"}), 
-                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "2"}), 
-                  React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "3"})
-                ), 
-
-                React.createElement("div", {className: "carousel-inner", role: "listbox"}, 
-                  React.createElement("div", {className: "item active"}, 
-                    React.createElement("img", {src: "./images/home_photo2.jpeg", alt: "Chania", width: "460", height: "345"})
+                  React.createElement("ol", {className: "carousel-indicators"}, 
+                    React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "0", className: "active"}), 
+                    React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "1"}), 
+                    React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "2"}), 
+                    React.createElement("li", {"data-target": "#myCarousel", "data-slide-to": "3"})
                   ), 
 
-                  React.createElement("div", {className: "item"}, 
-                    React.createElement("img", {src: "./images/home_photo4.jpeg", alt: "Chania", width: "460", height: "345"})
-                  ), 
+                  React.createElement("div", {className: "carousel-inner", role: "listbox"}, 
+                    React.createElement("div", {className: "item active"}, 
+                      React.createElement("img", {src: "./images/home_photo2.jpeg", alt: "Chania", width: "460", height: "345"})
+                    ), 
 
-                  React.createElement("div", {className: "item"}, 
-                    React.createElement("img", {src: "./images/home_photo1.jpeg", alt: "Flower", width: "460", height: "345"})
-                  ), 
+                    React.createElement("div", {className: "item"}, 
+                      React.createElement("img", {src: "./images/home_photo4.jpeg", alt: "Chania", width: "460", height: "345"})
+                    ), 
 
-                  React.createElement("div", {className: "item"}, 
-                    React.createElement("img", {src: "./images/home_photo3.jpg", alt: "Flower", width: "460", height: "345"})
+                    React.createElement("div", {className: "item"}, 
+                      React.createElement("img", {src: "./images/home_photo1.jpeg", alt: "Flower", width: "460", height: "345"})
+                    ), 
+
+                    React.createElement("div", {className: "item"}, 
+                      React.createElement("img", {src: "./images/home_photo3.jpg", alt: "Flower", width: "460", height: "345"})
+                    )
                   )
                 )
               )
             )
+            ), 
+            React.createElement("br", null), 
+          React.createElement("div", {className: "text_backsplash"}, 
+            React.createElement("p", null, "Our app was designed first and foremost to allow people to play. As" + ' ' +
+            "we continue to update and add more functionality, we will be sure to keep" + ' ' +
+            "you updated on the happenings at _futbol finder. We hope you continue to support" + ' ' +
+            "by simply using the app and spreading the word about us!")
           ), 
-          React.createElement("br", null), 
-        React.createElement("div", {className: "then"}, 
-          React.createElement("p", null, "Our app was designed first and foremost to allow people to play. As" + ' ' +
-          "we continue to update and add more functionality, we will be sure to keep" + ' ' +
-          "you updated on the happenings at _futbol finder. We hope you continue to support" + ' ' +
-          "by simply using the app and spreading the word about us!")
-        ), 
-        React.createElement("div", {className: "then"}, 
-          React.createElement("p", null, "As we consider ourself as much a part of the community as yourself, we" + ' ' +
-          "encourage feedback! So with that being said, please feel free to reach" + ' ' +
-          "out to us via the contact form with questions or concerns.")
-        ), 
-        React.createElement("div", {className: "then"}, 
-        React.createElement("h3", {className: "text-center"}, "We look forward to seeing you on the pitch!"), 
-        React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_futbol finder team"))
-      )
-    ), 
-    React.createElement("div", {className: "row"}, "  ")
-)
+          React.createElement("div", {className: "text_backsplash"}, 
+            React.createElement("p", null, "As we consider ourself as much a part of the community as yourself, we" + ' ' +
+            "encourage feedback! So with that being said, please feel free to reach" + ' ' +
+            "out to us via the contact form with questions or concerns.")
+          ), 
+          React.createElement("div", {className: "text_backsplash"}, 
+          React.createElement("h3", {className: "text-center"}, "We look forward to seeing you on the pitch!"), 
+          React.createElement("h4", {className: "text-center"}, React.createElement("i", null, "_futbol finder team"))
+        )
+      ), 
+      React.createElement("div", {className: "row"}, "  ")
+  )
     )
   }
 };
@@ -721,6 +723,7 @@ class MatchInfo extends React.Component{
 
   deleteMatch(model) {
     model.destroy();
+    {/*this.forceUpdate();*/}
   }
 
   render(){
@@ -756,11 +759,11 @@ class MatchInfo extends React.Component{
             )
         )
     ), 
-    React.createElement("div", {className: "well user_home"}, 
+    React.createElement("div", {className: "well user_listing"}, 
       React.createElement("div", {className: "caption text-center"}, 
         React.createElement("div", {className: "match_dynamic_details"}, 
         React.createElement("div", {key: this.props.match.cid}, 
-          React.createElement("h5", null, moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')), 
+          React.createElement("h5", null, moment(this.props.match.get("date")).format('LL') + " on " + moment(this.props.match.get("time2").iso).format('dddd, h:mm a')), 
           React.createElement("h5", null, this.props.match.get("address")), 
           React.createElement("p", null, this.props.match.get("description"), " ")
         )
@@ -844,7 +847,7 @@ class WelcomeContainer extends React.Component {
   render(){
     return(
     React.createElement(BaseLayout, null, 
-        React.createElement("div", {className: "well"}, 
+        React.createElement("div", {className: "well user_welcome"}, 
           React.createElement("div", {className: "container"}, 
             React.createElement("h2", null, "Match Browser for ", User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username'), "   "), 
             React.createElement("h4", null, "Current games are listed below. If no games are listed, create one!")
