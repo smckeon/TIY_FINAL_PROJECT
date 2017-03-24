@@ -60,6 +60,7 @@ class MatchInfo extends React.Component{
 
   deleteMatch(model) {
     model.destroy();
+    {/*this.forceUpdate();*/}
   }
 
   render(){
@@ -95,11 +96,11 @@ class MatchInfo extends React.Component{
             </div>
         </div>
     </div>
-    <div className="well user_home">
+    <div className="well user_listing">
       <div className="caption text-center">
         <div className="match_dynamic_details">
         <div key={this.props.match.cid}>
-          <h5>{moment(this.props.match.get("date").iso).format('LL') + " at " + moment(this.props.match.get("time").iso).format('LT')}</h5>
+          <h5>{moment(this.props.match.get("date")).format('LL') + " on " + moment(this.props.match.get("time2").iso).format('dddd, h:mm a')}</h5>
           <h5>{this.props.match.get("address")}</h5>
           <p>{this.props.match.get("description")} </p>
         </div>

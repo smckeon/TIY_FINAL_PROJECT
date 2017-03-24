@@ -35,8 +35,8 @@ class CreateMatch extends React.Component {
   }
 
   _handleTime(e) {
-
-
+    console.log(e.target.value);
+    this.setState({'time2': e.target.value})
   }
 
   _handleAddress(e) {
