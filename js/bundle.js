@@ -359,6 +359,7 @@ module.exports = AuthContainer;
 },{"../models/user":13,"backbone":116,"jquery":176,"react":425}],4:[function(require,module,exports){
 "use strict";
 var React = require('react');
+var Backbone = require('backbone')
 
 var BaseLayout = require('./layouts/baselayout.jsx');
 var Match = require('../models/match').Match;
@@ -383,20 +384,11 @@ class CreateMatch extends React.Component {
   }
 
   _handleDate(e) {
-
-    var date = new Date(e.target.value);
-
-    var dateParse = {
-      "__type" : "Date",
-      "iso" : date
-    }
-
-    this.setState({'date': dateParse})
+    this.setState({'date': e.target.value});
   }
 
   _handleTime(e) {
-    console.log(e.target.value);
-    this.setState({'time2': e.target.value})
+    this.setState({'time': e.target.value});
   }
 
   _handleAddress(e) {
@@ -408,13 +400,20 @@ class CreateMatch extends React.Component {
   }
 
   _createMatch() {
-    var match = new Match(this.state);
     var user = User.currentUser();
+    var match = new Match(this.state);
+    var newDate = new Date(this.state.date + ' ' + this.state.time);
 
+    var dateParse = {
+      "__type" : "Date",
+      "iso" : newDate
+    };
+
+    match.set('date',  dateParse );
     match.setPointer('owner', '_User', user.get('objectId'));
 
     match.save().then(function() {
-      console.log('match', match);
+      Backbone.history.navigate('/home', {trigger: true});
     });
 
   }
@@ -456,7 +455,7 @@ class CreateMatch extends React.Component {
 
 module.exports = CreateMatch;
 
-},{"../models/match":10,"../models/user":13,"./layouts/baselayout.jsx":6,"react":425}],5:[function(require,module,exports){
+},{"../models/match":10,"../models/user":13,"./layouts/baselayout.jsx":6,"backbone":116,"react":425}],5:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -728,6 +727,7 @@ class MatchInfo extends React.Component{
 
   render(){
 
+    console.log('props',moment(this.props.match.get("date").iso).format('LT'));
 
     var userId = User.currentUser().get('objectId');
     var modelOwnerId = this.props.match.get('owner').objectId;
@@ -763,7 +763,7 @@ class MatchInfo extends React.Component{
       React.createElement("div", {className: "caption text-center"}, 
         React.createElement("div", {className: "match_dynamic_details"}, 
         React.createElement("div", {key: this.props.match.cid}, 
-          React.createElement("h5", null, moment(this.props.match.get("date")).format('LL') + " on " + moment(this.props.match.get("time2").iso).format('dddd, h:mm a')), 
+          React.createElement("h5", null, moment(this.props.match.get("date").iso).format('LL') + " on " + moment(this.props.match.get("date").iso).format("dddd, h:mm")), 
           React.createElement("h5", null, this.props.match.get("address")), 
           React.createElement("p", null, this.props.match.get("description"), " ")
         )
@@ -1012,7 +1012,7 @@ var User = ParseModel.extend({
   logout: function(){
     var url = parse.BASE_API_URL + '/logout';
     $.post(url).then(event=>{
-      localStorage.removeItem('user');
+      localStorage.clear('user');
       console.log('parse user logged out');
     })
   },
@@ -1093,7 +1093,7 @@ var AppRouter = Backbone.Router.extend({
     'home': 'userHome',
     'account': 'accountInfo',
     'create': 'createMatch',
-    'games': 'gamesListing'
+    'matches': 'matchListing'
   },
   // Initializing a user who will be logged in
   initialize: function(){
@@ -1148,7 +1148,7 @@ var AppRouter = Backbone.Router.extend({
     )
   },
 
-  gamesListing(){
+  matchListing(){
 
   },
 
