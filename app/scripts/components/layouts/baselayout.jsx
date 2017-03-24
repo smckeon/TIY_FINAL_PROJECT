@@ -11,7 +11,7 @@ class BaseLayout extends React.Component {
     return(
       <div>
         <Header />
-        <img className="homebg" src=""/>
+        <img className="homebg" src="./images/grassbg.jpg"/>
           {this.props.children}
         <Footer />
       </div>

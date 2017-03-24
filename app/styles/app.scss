@@ -27,17 +27,24 @@ $tan: #d0c4b1;
 // Base Layout
 
 .homebg {
-  position: absolute;
-    min-height:100%;
-    width: 100%;
-    height: auto;
-    top: 0;
-    left: 0;
-    background: url('../images/grassbg.jpg') no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  // position: absolute;
+  //   min-height:100%;
+  //   width: 100%;
+  //   height: auto;
+  //   top: 0;
+  //   left: 0;
+  //   background: url('../images/grassbg.jpg') no-repeat center center;
+  //   -webkit-background-size: cover;
+  //   -moz-background-size: cover;
+  //   -o-background-size: cover;
+  //   background-size: cover;
+}
+
+@media (max-width: 400px) {
+    .homebg {
+        background: url('../images/grassbg.jpg');
+        background-repeat: repeat-y-x;
+    }
 }
 
 .nav > li > a:hover {
@@ -124,7 +131,7 @@ $tan: #d0c4b1;
 
 #myCarousel {
   position: relative;
-  left: 120px;
+  left: 100px;
   box-shadow: 5px -2px 25px 8px #8e8473;
 }
 @media (max-width: 400px) {
