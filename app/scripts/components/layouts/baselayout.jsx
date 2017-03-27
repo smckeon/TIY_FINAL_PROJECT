@@ -9,7 +9,7 @@ var User = require('../../models/user.js').User;
 class BaseLayout extends React.Component {
   render(){
     return(
-      <div>
+      <div className="base_layout">
         <Header />
         <img className="homebg" src="./images/grassbg.jpg"/>
           {this.props.children}

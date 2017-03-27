@@ -6,4 +6,4 @@ require('./parse');
 
 $(function(){
   Backbone.history.start();
-})
+});

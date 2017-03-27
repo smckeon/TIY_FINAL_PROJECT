@@ -1,9 +1,12 @@
+var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone')
 
 var BaseLayout = require('./layouts/baselayout.jsx');
 var Match = require('../models/match').Match;
 var User = require('../models/user').User;
+
+const SERVER_URL = "http://localhost:3000";
 
 class CreateMatch extends React.Component {
   constructor(props){
@@ -21,6 +24,7 @@ class CreateMatch extends React.Component {
     this._handleTime = this._handleTime.bind(this);
     this._handleAddress = this._handleAddress.bind(this);
     this._handleDescription = this._handleDescription.bind(this);
+    this._sendSMS = this._sendSMS.bind(this);
   }
 
   _handleDate(e) {
@@ -57,6 +61,14 @@ class CreateMatch extends React.Component {
     });
 
   }
+
+  _sendSMS(e) {
+    e.preventDefault();
+    $.get(`${SERVER_URL}/sms`, { number: '+18032074719'}).done(response => {
+      console.log('message sent successfully', response);
+    });
+  }
+
   render(){
     return(
       <BaseLayout>
@@ -86,6 +98,7 @@ class CreateMatch extends React.Component {
                 </div>
               </div>
             </div>
+            <button onClick={this._sendSMS}>Send Message</button>
           <div className="row" />
       </BaseLayout>
     )
