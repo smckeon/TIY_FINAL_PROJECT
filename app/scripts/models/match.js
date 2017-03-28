@@ -10,7 +10,7 @@ var Match = ParseModel.extend({
 
 var MatchCollection = ParseCollection.extend({
   model: Match,
-  url: 'https://futbol-finder.herokuapp.com/classes/Matches'
+  baseUrl: 'https://futbol-finder.herokuapp.com/classes/Matches'
 });
 
 module.exports = {

@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var React = require('react');
 var moment = require('moment');
 var User = require('../models/user').User;
@@ -15,10 +16,10 @@ class MatchListing extends React.Component {
       matchCollection: matchCollection
     }
 
-    matchCollection.fetch().done((response)=> {
+    matchCollection.parseInclude('owner,attendees').fetch().done((response)=> {
       this.setState({matchCollection : matchCollection});
     });
-
+    this._sendSMS = this._sendSMS.bind(this);
     this.deleteMatch = this.deleteMatch.bind(this);
   }
 
@@ -29,16 +30,37 @@ class MatchListing extends React.Component {
     model.destroy();
   }
 
+  _sendSMS(model) {
+    console.log('model', model);
+    // $.get(`${SERVER_URL}/sms`, { number: '+18032074719'}).done(response => {
+    //   console.log('message sent successfully', response);
+    // });
+  }
+
+  _addAttendee(model) {
+    var match = model;
+    var userId = User.currentUser().get('objectId');
+    match.set({
+      'attendees': {
+        '__op': 'AddRelation',
+        'objects': [
+          {'__type': 'Pointer', 'className': '_User', 'objectId': userId}
+        ]
+      }
+    });
+    match.save();
+  }
+
 
   render(){
     var matches;
     var matchCollection = this.state.matchCollection;
-    var self = this;
 
     if (matchCollection.length != 0) {
-      matches = matchCollection.map(function(match){
+      matches = matchCollection.map((match) => {
+        console.log('match', match);
         return (
-          <MatchInfo key={match.cid} match={match} deleteMatch={self.deleteMatch} />
+          <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee}/>
         )
       })
     }
@@ -60,35 +82,45 @@ class MatchListing extends React.Component {
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
+
+
     this.state = {
       image: "http://placehold.it/250x200"
     }
-    this.deleteMatch = this.deleteMatch.bind(this);
+
   }
 
-  deleteMatch(model) {
-    this.props.deleteMatch(model);
+  componentDidMount() {
+    var ownerImage = this.props.match.get('owner').imageUrl
+    if(ownerImage){
+      this.setState({image: ownerImage})
+    };
   }
 
   render(){
-
-    console.log('props',moment(this.props.match.get("date").iso).format('LT'));
-
-    var userId = User.currentUser().get('objectId');
+    var currentUserId = User.currentUser().get('objectId');
     var modelOwnerId = this.props.match.get('owner').objectId;
+    var deleteAccess = currentUserId == modelOwnerId ? true : false;
 
-    var deleteAccess = userId == modelOwnerId ? true : false;
+    var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)}/>
 
+    var contactIcon = <button onClick={(e) => this.props._sendSMS(this.props.match)}>Send Message</button>
 
     return (
-  <div className="match-listing col-md-4">
-  <div className="well">
-    {deleteAccess ? <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.deleteMatch(this.props.match)}/> : null}
+    <div className="match-listing col-md-4">
+    <div className="well">
+      { deleteAccess ? <div> {deleteIcon} {contactIcon} </div> : null }
     <br />
-    <a data-toggle="modal" data-target=".bs-example-modal-lg"><img src= { this.state.image } className="center-block" /></a>
+
+
+
+
+
+
+    <a data-toggle="modal" data-target={'.bs-example-modal-lg' + this.props.match.cid}><img src= { this.state.image } className="center-block" /></a>
     <p className="text-center">Click on image to view who's going!</p>
 
-    <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div className={'modal fade bs-example-modal-lg' + this.props.match.cid} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div className="modal-dialog modal-md">
             <div className="modal-content bio-modal">
                 <div className="col-sm-12 col-md-3">
@@ -104,6 +136,11 @@ class MatchInfo extends React.Component{
             </div>
         </div>
     </div>
+
+
+
+
+
     <div className="well user_listing">
       <div className="caption text-center">
         <div className="match_dynamic_details">
@@ -113,7 +150,7 @@ class MatchInfo extends React.Component{
           <p>{this.props.match.get("description")} </p>
         </div>
         </div>
-        <input type='button' className="btn btn-success text-right" value="Going!" />
+        <input onClick={(e) => this.props._addAttendee(this.props.match)} type='button' className="btn btn-success text-right" value="Going!" />
 
         </div>
       </div>

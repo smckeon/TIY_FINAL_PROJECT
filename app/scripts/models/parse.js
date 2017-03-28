@@ -24,7 +24,7 @@ var ParseModel = Backbone.Model.extend({
 });
 
 var ParseCollection = Backbone.Collection.extend({
-  whereClause: {},
+  whereClause: {}, includeClause: 0,
   parseWhere: function(field, value, objectId){
     if(objectId){
       value = {
@@ -38,16 +38,24 @@ var ParseCollection = Backbone.Collection.extend({
 
     return this;
   },
-  url: function(){
-    var url = this.base;
-
-    if(Object.keys(this.whereClause).length > 0){
-      url += '?where=' + JSON.stringify(this.whereClause);
-      this.whereClause = {};
-    }
-
-    return url;
+  parseInclude: function(string) {
+    this.includeClause = string;
+    return this;
   },
+  url: function(){
+      var url = this.baseUrl;
+
+      if(Object.keys(this.whereClause).length > 0) {
+        url += '?where=' + JSON.stringify(this.whereClause);
+        this.whereClause = {};
+      } else if (this.includeClause.length > 0) {
+        url += '?include=' + this.includeClause;
+        console.log('url', url);
+        this.includeClause = null;
+      }
+
+      return url;
+    },
   parse: function(data){
     return data.results;
   }

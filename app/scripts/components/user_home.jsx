@@ -5,18 +5,10 @@ var BaseLayout = require('./layouts/baselayout.jsx');
 var MatchListing = require('./match_listing.jsx');
 var User = require('../models/user').User;
 
-var API_KEY = require('.././api_key').API_KEY;
-// ^^ ? Hiding API KEY
 
 class WelcomeContainer extends React.Component {
-  componentWillMount(){
-
-    $.ajax({
-      url: 'https://api.meetup.com/find/groups?key=' + API_KEY + '&zip=28105&radius=10&keywords="soccer"&order=members',
-      dataType: 'jsonp'
-    }).done(function(data){
-      console.log('data', data);
-    })
+  constructor(props){
+    super(props);
   }
   render(){
     return(
