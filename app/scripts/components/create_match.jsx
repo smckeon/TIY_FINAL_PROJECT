@@ -4,6 +4,7 @@ var Backbone = require('backbone')
 
 var BaseLayout = require('./layouts/baselayout.jsx');
 var Match = require('../models/match').Match;
+var MatchCollection = require('../models/match').MatchCollection;
 var User = require('../models/user').User;
 
 const SERVER_URL = "http://localhost:3000";

@@ -16,7 +16,11 @@ class MatchListing extends React.Component {
       matchCollection: matchCollection
     }
 
-    matchCollection.parseInclude('owner,attendees').fetch().done((response)=> {
+    matchCollection.parseInclude('owner').fetch().done((response)=> {
+      matchCollection.parseInclude = '';
+      matchCollection.parseWhere = {};
+      console.log('include', matchCollection.parseInclude.length);
+      console.log('hwere', matchCollection.parseWhere.length);
       this.setState({matchCollection : matchCollection});
     });
     this._sendSMS = this._sendSMS.bind(this);
@@ -40,6 +44,8 @@ class MatchListing extends React.Component {
   _addAttendee(model) {
     var match = model;
     var userId = User.currentUser().get('objectId');
+    var matchCollection = new MatchCollection();
+    matchCollection.includeClause = '';
     match.set({
       'attendees': {
         '__op': 'AddRelation',

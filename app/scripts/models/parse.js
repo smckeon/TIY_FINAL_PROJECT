@@ -4,7 +4,9 @@ var parse = require('../parse').parse;
 
 var ParseModel = Backbone.Model.extend({
   idAttribute: 'objectId',
+
   save: function(key, val, options){
+    console.log('this model save', this);
     delete this.attributes.createdAt;
     delete this.attributes.updatedAt;
 
@@ -24,7 +26,7 @@ var ParseModel = Backbone.Model.extend({
 });
 
 var ParseCollection = Backbone.Collection.extend({
-  whereClause: {}, includeClause: 0,
+  whereClause: {}, includeClause: '',
   parseWhere: function(field, value, objectId){
     if(objectId){
       value = {
@@ -45,14 +47,17 @@ var ParseCollection = Backbone.Collection.extend({
   url: function(){
       var url = this.baseUrl;
 
-      if(Object.keys(this.whereClause).length > 0) {
-        url += '?where=' + JSON.stringify(this.whereClause);
-        this.whereClause = {};
-      } else if (this.includeClause.length > 0) {
-        url += '?include=' + this.includeClause;
-        console.log('url', url);
-        this.includeClause = null;
-      }
+      if(Object.keys(this.whereClause).length > 0 && this.includeClause.length > 0) {
+      url += '?where=' + JSON.stringify(this.whereClause) + '&include=' + this.includeClause;
+      this.whereClause = {};
+      this.includeClause = 0;
+    } else if (Object.keys(this.whereClause).length > 0) {
+      url += '?where=' + JSON.stringify(this.whereClause);
+      this.whereClause = {};
+    } else if (this.includeClause.length != 0) {
+      url += '?include=' + this.includeClause;
+      this.includeClause = '';
+    }
 
       return url;
     },
