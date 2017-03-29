@@ -7,7 +7,7 @@ var Match = require('../models/match').Match;
 var MatchCollection = require('../models/match').MatchCollection;
 var User = require('../models/user').User;
 
-// const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "http://localhost:3000";
 
 class CreateMatch extends React.Component {
   constructor(props){
@@ -29,6 +29,7 @@ class CreateMatch extends React.Component {
   }
 
   _handleDate(e) {
+    console.log();
     this.setState({'date': e.target.value});
   }
 

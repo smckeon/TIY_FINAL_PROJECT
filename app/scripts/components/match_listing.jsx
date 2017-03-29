@@ -5,7 +5,11 @@ var User = require('../models/user').User;
 var UserCollection = require('../models/user').UserCollection;
 var MatchCollection = require('../models/match').MatchCollection;
 
-  // { this.state.matchCollection.length != 0 ? <MatchListingModal collection={ this.state.matchCollection }/> : null }
+
+
+  // on submit set an empty array to going on create match
+  // owner still a pointer
+  // console log matchcollection in render
 
   class MatchListing extends React.Component {
    constructor(props){
@@ -19,11 +23,12 @@ var MatchCollection = require('../models/match').MatchCollection;
        userCollection
      }
 
-     matchCollection.parseInclude('owner').fetch().done((response)=> {
+     matchCollection.parseInclude('owner,going').fetch().done((response)=> {
        this.setState({matchCollection : matchCollection});
      });
      this._sendSMS = this._sendSMS.bind(this);
      this.deleteMatch = this.deleteMatch.bind(this);
+     this.generateAttendeesList = this.generateAttendeesList.bind(this);
    }
 
    deleteMatch(model) {
@@ -41,29 +46,43 @@ var MatchCollection = require('../models/match').MatchCollection;
      // });
    }
 
+   generateAttendeesList(match) {
+     var going = match.get('going');
+     return going.map(function(user){
+       return(
+         <li key={match.objectId}>{match.get('name')}</li>
+        )
+     })
+   }
+
    _addAttendee(model) {
      var match = model;
      var userId = User.currentUser().get('objectId');
      match.addAttendee(User.currentUser().get('objectId'));
-   }
 
+     if (match.get('going')){
+     match.get('going').push({"__type":"Pointer","className":"_User","objectId":userId})
+   }else{
+     // if undefined set to array type then push
+      match.set({'going': []}).push({"__type":"Pointer","className":"_User","objectId":userId})
+   }
+    match.save();
+}
 
    render(){
      var matches;
      var matchCollection = this.state.matchCollection;
+    //  console.log('hey you', matchCollection);
 
      if (matchCollection.length != 0) {
-       matches = matchCollection.map((match) => {
-
-         // need to bring in the attendees
-         // var attendees = attendees
-
+      matches = matchCollection.map((match) => {
+        var attendeeList = this.generateAttendeesList(match);
+     // map each user that is going to each event, inside the map of each event
          return (
-           <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee} />
+           <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee} match={match}/>
          )
        })
      }
-
      return(
        <div>
          <div className="container">
@@ -92,6 +111,15 @@ class MatchInfo extends React.Component{
   }
 
   render(){
+    var attendees = this.props.match.get('going').map(function(user, index){
+      console.log('user', user);
+        return (
+          <li key={index}>{user.name}</li>
+        )
+    });
+
+    console.log('peoples', this.props.match);
+
    var currentUserId = User.currentUser().get('objectId');
    var modelOwnerId = this.props.match.get('owner').objectId;
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
@@ -118,7 +146,7 @@ class MatchInfo extends React.Component{
                <div className="col-sm-12 col-md-9">
                    <h1>Players Attending:</h1>
                    <ul>
-                     <li>Listing of attending players by username.</li>
+                     {attendees}
                    </ul>
                </div>
                <button type="button" className="btn btn-secondary center-block" data-dismiss="modal">X</button>
