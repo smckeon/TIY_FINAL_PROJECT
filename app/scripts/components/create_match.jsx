@@ -56,6 +56,7 @@ class CreateMatch extends React.Component {
     };
 
     match.set('date',  dateParse );
+    match.set('going', []);
     match.setPointer('owner', '_User', user.get('objectId'));
 
     match.save().then(function() {
