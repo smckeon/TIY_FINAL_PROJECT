@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 
 var parse = require('../parse');
 var ParseModel = require('./parse').ParseModel;
+var ParseCollection = require('./parse').ParseCollection;
 
 var User = ParseModel.extend({
   idAttribute: 'objectId',
@@ -57,6 +58,12 @@ var User = ParseModel.extend({
   }
 });
 
+var UserCollection = ParseCollection.extend({
+  model: User,
+  baseUrl: parse.BASE_API_URL + '/users'
+});
+
 module.exports = {
-  User
-}
+  User,
+  UserCollection
+};

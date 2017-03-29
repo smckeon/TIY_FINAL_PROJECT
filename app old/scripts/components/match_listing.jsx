@@ -55,11 +55,8 @@ var MatchCollection = require('../models/match').MatchCollection;
      if (matchCollection.length != 0) {
        matches = matchCollection.map((match) => {
 
-         // need to bring in the attendees
-         // var attendees = attendees
-
          return (
-           <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee} />
+           <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee}/>
          )
        })
      }
@@ -79,9 +76,12 @@ var MatchCollection = require('../models/match').MatchCollection;
 class MatchInfo extends React.Component{
   constructor(props) {
     super(props);
+
+
     this.state = {
       image: "http://placehold.it/250x200"
     }
+
   }
 
   componentDidMount() {

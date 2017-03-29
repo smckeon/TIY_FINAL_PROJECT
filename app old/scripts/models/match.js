@@ -8,7 +8,6 @@ var Match = ParseModel.extend({
 });
 
 var MatchCollection = ParseCollection.extend({
-  model: Match,
   baseUrl: 'https://futbol-finder.herokuapp.com/classes/Matches'
 });
 

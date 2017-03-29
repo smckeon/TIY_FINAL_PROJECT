@@ -73,6 +73,7 @@
   "dependencies": {
     "moment": "^2.18.0",
     "react-bootstrap": "^0.30.8",
+    "react-bootstrap-intl-tel-input": "0.0.13",
     "twilio": "^2.11.1"
   }
 }
