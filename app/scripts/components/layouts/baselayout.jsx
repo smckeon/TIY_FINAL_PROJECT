@@ -28,7 +28,7 @@ class Header extends React.Component{
   		      <a className="navbar-brand navbar-brand-centered" href="#"><img src=".../../images/ff_logo.png" /></a>
   		    </div>
 
-  		    <div className="collapse navbar-collapse" id="navbar-brand-centered">
+  		    <div className="navbar" id="navbar-brand-centered">
   		      <ul className="nav navbar-nav navbar-right">
   		        <li className="contact_us"><a href="#">Contact Us</a></li>
 
@@ -47,7 +47,7 @@ class SignupNavItem extends React.Component{
   render(){
     return(
       <a href="#/auth" className="btn btn-success signup-btn" role="button">
-        Login  /  Signup 
+        Login  /  Signup
       </a>
     )
   }

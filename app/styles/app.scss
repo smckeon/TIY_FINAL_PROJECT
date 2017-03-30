@@ -46,14 +46,26 @@ $tan: #d0c4b1;
 }
 
 #nav-dropdown {
- @media screen and (max-width: 739px){
-    right: 300px;
-    top: 3px;
+ @media screen and (max-width: 430px){
+   display: inline-block;
+    // right: 300px;
+    // top: 3px;
  }
 }
 
+.navbar > ul > li > a{
+ @media screen and (max-width: 430px){
+   display: none;
+ }
+}
 
-
+.auth-header {
+ @media screen and (max-width: 739px){
+   display: inline;
+    // right: 300px;
+    // top: 3px;
+ }
+}
 
 .nav > li > a:hover {
     text-decoration: none;
@@ -82,7 +94,6 @@ $tan: #d0c4b1;
   margin-bottom: 0px;
   border: none;
   background-color: #2A3914;
-  // background-image: url("../images/navbg3.jpg");
 }
 
 
@@ -91,10 +102,6 @@ $tan: #d0c4b1;
   top: 8px;
 }
 
-// Home
-// .base_layout {
-//   position: static;
-// }
 
 .text_backsplash {
   background-color:rgba(26, 21, 21, 0.3);
@@ -126,6 +133,7 @@ $tan: #d0c4b1;
   left: 100px;
   box-shadow: 5px -2px 25px 8px #8e8473;
 }
+
 @media (max-width: 400px) {
     #myCarousel {
       position: relative;
@@ -216,6 +224,28 @@ $tan: #d0c4b1;
    bottom: 190px;
  }
 }
+
+#text_alert {
+ @media screen and (max-width: 375px) and (min-width: 375px){
+   float: right;
+   position: absolute;
+   z-index: 0;
+   left: 165px;
+   bottom: 190px;
+ }
+}
+
+#text_alert {
+ @media screen and (max-width: 414px) and (min-width: 414px){
+   float: right;
+   position: absolute;
+   z-index: 0;
+   left: 185px;
+   bottom: 190px;
+ }
+}
+
+
 
 .user_listing {
   margin-top: 2%;
