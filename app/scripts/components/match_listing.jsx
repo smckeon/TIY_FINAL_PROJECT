@@ -148,23 +148,26 @@ class MatchInfo extends React.Component{
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
 
 
-   var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)} />
+   var deleteIcon = <i className="fa fa-times fa-2x" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)} />
 
-   var contactIcon = <i className="fa fa-mobile" id="text_alert" aria-hidden="true" onClick={(e) => this.props._sendSMS(this.props.match)} />
+   var contactIcon = <i className="fa fa-mobile fa-3x" id="text_alert" aria-hidden="true" onClick={(e) => this.props._sendSMS(this.props.match)} />
 
    return (
-   <div className="match-listing col-md-4">
+   <div className="match-listing col-sm-6 col-md-4">
    <div className="well">
-     { deleteAccess ? <div> {deleteIcon} {contactIcon} </div> : null }
-   <br />
+    { deleteAccess ? <div className='icon alert-icon'> {contactIcon} </div> : null }
+    { deleteAccess ? <div className='icon delete-icon'> {deleteIcon} </div> : null }
 
    <a data-toggle="modal" data-target={'.bs-example-modal-lg' + this.props.match.cid}><img src= { this.state.image } className="center-block match_photo" /></a>
    <p className="text-center">Click on image to view who's going!</p>
 
+
+   <br />
+
    <div className={'modal fade bs-example-modal-lg' + this.props.match.cid} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
        <div className="modal-dialog modal-md">
            <div className="modal-content bio-modal">
-               <div className="col-sm-12 col-md-3">
+               <div className="col-sm-4 col-md-3">
                    <img src={ this.state.image } />
                </div>
                <div className="col-sm-12 col-md-9">

@@ -24,6 +24,12 @@ $tan: #d0c4b1;
   font-family: $sans;
 }
 
+* {
+ @media screen and (max-width: 321px){
+   max-width: 100vw;
+ }
+}
+
 // Base Layout
 
 .base_layout {
@@ -37,26 +43,17 @@ $tan: #d0c4b1;
     top: 0;
     bottom: 0;
     z-index: -1;
-  // position: absolute;
-  //   min-height:100%;
-  //   width: 100%;
-  //   height: auto;
-  //   top: 0;
-  //   left: 0;
-  //   -webkit-background-size: cover;
-  //   -moz-background-size: cover;
-  //   -o-background-size: cover;
-  //   background-size: cover;
+}
+
+#nav-dropdown {
+ @media screen and (max-width: 739px){
+    right: 300px;
+    top: 3px;
+ }
 }
 
 
 
-@media (max-width: 400px) {
-    .homebg {
-        background: url('../images/grassbg.jpg');
-        background-repeat: repeat-y-x;
-    }
-}
 
 .nav > li > a:hover {
     text-decoration: none;
@@ -88,21 +85,6 @@ $tan: #d0c4b1;
   // background-image: url("../images/navbg3.jpg");
 }
 
-.footer-nav {
-    display: flex;
-    list-style-type: none;
-    position: relative;
-    right: 0;
-    bottom: -75px;
-    left: 0;
-    padding: 1rem;
-    background-color: #6a7a67;
-    text-align: center;
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 0;
-    border: none;
-}
 
 .signup-btn {
   position: relative;
@@ -171,8 +153,30 @@ $tan: #d0c4b1;
   height: 200px;
 }
 
+.match_icons {
+  position: absolute;
+  z-index: 1;
+  bottom: 25px;
+  width: 315px;
+  right: 20px;
+}
+
 #delete_match {
   float: right;
+  position: relative;
+  z-index: 0;
+  left: 308px;
+  bottom: 24px;
+}
+
+#delete_match {
+ @media screen and (max-width: 321px){
+   float: right;
+   position: relative;
+   z-index: 0;
+   left: 218px;
+   bottom: 24px;
+ }
 }
 
 #delete_match:hover {
@@ -180,8 +184,37 @@ $tan: #d0c4b1;
   cursor: pointer;
 }
 
+#text_alert {
+  float: right;
+  position: absolute;
+  z-index: 0;
+  left: 180px;
+  bottom: 212px;
+}
+
 #text_alert:hover {
+  float: left;
   cursor: pointer;
+}
+
+#text_alert {
+ @media screen and (max-width: 410px){
+   float: right;
+   position: absolute;
+   z-index: 0;
+   left: 180px;
+   bottom: 190px;
+ }
+}
+
+#text_alert {
+ @media screen and (max-width: 321px){
+   float: right;
+   position: absolute;
+   z-index: 0;
+   left: 135px;
+   bottom: 190px;
+ }
 }
 
 .user_listing {
@@ -196,14 +229,16 @@ $tan: #d0c4b1;
 .match_dynamic_details {
   height: 100px;
   overflow: auto;
-
-
 }
 
 .match-listing {
+  position: relative;
   margin-top: 5px;
 }
 
+.delete-icon {
+  position: absolute;
+}
 // Create Match
 
 .match-template {
