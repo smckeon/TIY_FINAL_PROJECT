@@ -41,6 +41,14 @@ const SERVER_URL = "http://localhost:3000";
    }
 
    _sendSMS(match) {
+     console.log('match', match);
+
+     var message = {
+       description: match.get('description'),
+       address: match.get('address'),
+       date: moment(match.get('date').iso).format('LL'),
+       time: moment(match.get('date').iso).format("dddd, h:mm")
+     }
     // CODE THAT NEEDS TO RUN IF SENDING TO ACTUAL USERS; FORMAT USER NUMBER TO BE CORRECT FORMAT FOR TWILIO
     //  match.get('going').map((attendee)=>{
     //    var number = attendee.number;
@@ -49,8 +57,12 @@ const SERVER_URL = "http://localhost:3000";
     //    });
     //  });
 
+
+
+
      // TEST CODE THAT WILL SEND A TEST MESSAGE TO END USER
-     $.get(`${SERVER_URL}/sms`, { number: '+18032074719'}).done(response => {
+
+     $.get(`${SERVER_URL}/sms`, { number: '+18032074719', message: message }).done(response => {
        console.log('message sent successfully', response);
      });
    }
