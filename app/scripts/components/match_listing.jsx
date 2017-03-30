@@ -123,10 +123,12 @@ class MatchInfo extends React.Component{
    var currentUserId = User.currentUser().get('objectId');
    var modelOwnerId = this.props.match.get('owner').objectId;
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
+   var matchOwner = User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username');
+   console.log('owner', matchOwner);
 
    var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)}/>
 
-   var contactIcon = <button onClick={(e) => this.props._sendSMS(this.props.match)}>Send Message</button>
+   var contactIcon = <button onClick={(e) => this.props._sendSMS(this.props.match)}>Alert Group</button>
 
    return (
    <div className="match-listing col-md-4">
@@ -162,6 +164,7 @@ class MatchInfo extends React.Component{
      <div className="caption text-center">
        <div className="match_dynamic_details">
        <div key={this.props.match.cid}>
+         <h5>{}</h5>
          <h5>{moment(this.props.match.get("date").iso).format('LL') + " on " + moment(this.props.match.get("date").iso).format("dddd, h:mm")}</h5>
          <h5>{this.props.match.get("address")}</h5>
          <p>{this.props.match.get("description")} </p>
