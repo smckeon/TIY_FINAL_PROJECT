@@ -13,7 +13,6 @@ class BaseLayout extends React.Component {
         <Header />
         <img className="homebg" src=""/>
           {this.props.children}
-        <Footer />
       </div>
     )
   }

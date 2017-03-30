@@ -50,19 +50,10 @@ const SERVER_URL = "http://localhost:3000";
        time: moment(match.get('date').iso).format("dddd, h:mm")
      }
     // CODE THAT NEEDS TO RUN IF SENDING TO ACTUAL USERS; FORMAT USER NUMBER TO BE CORRECT FORMAT FOR TWILIO
-    //  match.get('going').map((attendee)=>{
-    //    var number = attendee.number;
-    //    $.get(`${SERVER_URL}/sms`, { number: number }).done(response => {
-    //      console.log('message sent successfully', response);
-    //    });
-    //  });
-
-
-
-
      // TEST CODE THAT WILL SEND A TEST MESSAGE TO END USER
 
      $.get(`${SERVER_URL}/sms`, { number: '+18032074719', message: message }).done(response => {
+       console.log('message', message);
        console.log('message sent successfully', response);
      });
    }
@@ -157,9 +148,9 @@ class MatchInfo extends React.Component{
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
 
 
-   var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)}/>
+   var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)} />
 
-   var contactIcon = <button onClick={(e) => this.props._sendSMS(this.props.match)}>Alert Group</button>
+   var contactIcon = <i className="fa fa-mobile" id="text_alert" aria-hidden="true" onClick={(e) => this.props._sendSMS(this.props.match)} />
 
    return (
    <div className="match-listing col-md-4">
@@ -167,7 +158,7 @@ class MatchInfo extends React.Component{
      { deleteAccess ? <div> {deleteIcon} {contactIcon} </div> : null }
    <br />
 
-   <a data-toggle="modal" data-target={'.bs-example-modal-lg' + this.props.match.cid}><img src= { this.state.image } className="center-block" /></a>
+   <a data-toggle="modal" data-target={'.bs-example-modal-lg' + this.props.match.cid}><img src= { this.state.image } className="center-block match_photo" /></a>
    <p className="text-center">Click on image to view who's going!</p>
 
    <div className={'modal fade bs-example-modal-lg' + this.props.match.cid} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -191,7 +182,6 @@ class MatchInfo extends React.Component{
      <div className="caption text-center">
        <div className="match_dynamic_details">
        <div key={this.props.match.cid}>
-         <h5>{}</h5>
          <h5>{moment(this.props.match.get("date").iso).format('LL') + " on " + moment(this.props.match.get("date").iso).format("dddd, h:mm")}</h5>
          <h5>{this.props.match.get("address")}</h5>
          <p>{this.props.match.get("description")} </p>
