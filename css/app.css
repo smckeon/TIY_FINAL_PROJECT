@@ -5784,10 +5784,17 @@ img {
   bottom: 0;
   z-index: -1; }
 
-@media screen and (max-width: 739px) {
+@media screen and (max-width: 430px) {
   #nav-dropdown {
-    right: 300px;
-    top: 3px; } }
+    display: inline-block; } }
+
+@media screen and (max-width: 430px) {
+  .navbar > ul > li > a {
+    display: none; } }
+
+@media screen and (max-width: 739px) {
+  .auth-header {
+    display: inline; } }
 
 .nav > li > a:hover {
   text-decoration: none;
@@ -5908,6 +5915,22 @@ img {
     position: absolute;
     z-index: 0;
     left: 135px;
+    bottom: 190px; } }
+
+@media screen and (max-width: 375px) and (min-width: 375px) {
+  #text_alert {
+    float: right;
+    position: absolute;
+    z-index: 0;
+    left: 165px;
+    bottom: 190px; } }
+
+@media screen and (max-width: 414px) and (min-width: 414px) {
+  #text_alert {
+    float: right;
+    position: absolute;
+    z-index: 0;
+    left: 185px;
     bottom: 190px; } }
 
 .user_listing {

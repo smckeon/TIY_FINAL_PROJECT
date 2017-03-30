@@ -580,7 +580,7 @@ class Header extends React.Component{
   		      React.createElement("a", {className: "navbar-brand navbar-brand-centered", href: "#"}, React.createElement("img", {src: ".../../images/ff_logo.png"}))
   		    ), 
 
-  		    React.createElement("div", {className: "collapse navbar-collapse", id: "navbar-brand-centered"}, 
+  		    React.createElement("div", {className: "navbar", id: "navbar-brand-centered"}, 
   		      React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
   		        React.createElement("li", {className: "contact_us"}, React.createElement("a", {href: "#"}, "Contact Us")), 
 
@@ -599,7 +599,7 @@ class SignupNavItem extends React.Component{
   render(){
     return(
       React.createElement("a", {href: "#/auth", className: "btn btn-success signup-btn", role: "button"}, 
-        "Login  /  Signup" 
+        "Login  /  Signup"
       )
     )
   }
