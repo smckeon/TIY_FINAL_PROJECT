@@ -5769,6 +5769,17 @@ img {
 * {
   font-family: "Open Sans", sans-serif; }
 
+.base_layout {
+  background: url("../images/grassbg.jpg") no-repeat top center/cover; }
+
+.homebg {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  z-index: -1; }
+
 @media (max-width: 400px) {
   .homebg {
     background: url("../images/grassbg.jpg");
@@ -5816,10 +5827,6 @@ img {
   position: relative;
   top: 8px; }
 
-.homebg {
-  position: absolute;
-  z-index: -1; }
-
 .text_backsplash {
   background-color: rgba(26, 21, 21, 0.3);
   border-radius: 10px;
@@ -5829,6 +5836,7 @@ img {
   color: #5CB85C;
   font-weight: bolder;
   font-style: italic;
+  margin-top: 10px;
   margin-bottom: 25px; }
 
 .about_us {
@@ -5857,11 +5865,18 @@ img {
 .auth_contain {
   padding-top: 2%; }
 
+.match_photo {
+  width: 100%;
+  height: 200px; }
+
 #delete_match {
   float: right; }
 
 #delete_match:hover {
   float: right;
+  cursor: pointer; }
+
+#text_alert:hover {
   cursor: pointer; }
 
 .user_listing {
