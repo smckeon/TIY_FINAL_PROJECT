@@ -5,6 +5,7 @@ var User = require('../models/user').User;
 var UserCollection = require('../models/user').UserCollection;
 var MatchCollection = require('../models/match').MatchCollection;
 
+const SERVER_URL = "http://localhost:3000";
 
 
   // on submit set an empty array to going on create match
@@ -29,6 +30,7 @@ var MatchCollection = require('../models/match').MatchCollection;
      this._sendSMS = this._sendSMS.bind(this);
      this.deleteMatch = this.deleteMatch.bind(this);
      this.generateAttendeesList = this.generateAttendeesList.bind(this);
+     this._addAttendee = this._addAttendee.bind(this);
    }
 
    deleteMatch(model) {
@@ -38,12 +40,19 @@ var MatchCollection = require('../models/match').MatchCollection;
      model.destroy();
    }
 
-   _sendSMS(model) {
-     console.log('model', model);
-     // do not use jquery on this page
-     // $.get(`${SERVER_URL}/sms`, { number: '+18032074719'}).done(response => {
-     //   console.log('message sent successfully', response);
-     // });
+   _sendSMS(match) {
+    // CODE THAT NEEDS TO RUN IF SENDING TO ACTUAL USERS; FORMAT USER NUMBER TO BE CORRECT FORMAT FOR TWILIO
+    //  match.get('going').map((attendee)=>{
+    //    var number = attendee.number;
+    //    $.get(`${SERVER_URL}/sms`, { number: number }).done(response => {
+    //      console.log('message sent successfully', response);
+    //    });
+    //  });
+
+     // TEST CODE THAT WILL SEND A TEST MESSAGE TO END USER
+     $.get(`${SERVER_URL}/sms`, { number: '+18032074719'}).done(response => {
+       console.log('message sent successfully', response);
+     });
    }
 
    generateAttendeesList(match) {
@@ -58,15 +67,21 @@ var MatchCollection = require('../models/match').MatchCollection;
    _addAttendee(model) {
      var match = model;
      var userId = User.currentUser().get('objectId');
+     var matchCollection = new MatchCollection();
      match.addAttendee(User.currentUser().get('objectId'));
 
      if (match.get('going')){
      match.get('going').push({"__type":"Pointer","className":"_User","objectId":userId})
-   }else{
+    }else{
      // if undefined set to array type then push
       match.set({'going': []}).push({"__type":"Pointer","className":"_User","objectId":userId})
-   }
-    match.save();
+    }
+
+    match.save().then(()=>{
+      matchCollection.parseInclude('owner,going').fetch().done((response)=> {
+        this.setState({matchCollection : matchCollection});
+      });
+    })
 }
 
    render(){
@@ -77,6 +92,7 @@ var MatchCollection = require('../models/match').MatchCollection;
      if (matchCollection.length != 0) {
       matches = matchCollection.map((match) => {
         var attendeeList = this.generateAttendeesList(match);
+        // console.log('attendee list', match);
      // map each user that is going to each event, inside the map of each event
          return (
            <MatchInfo key={match.cid} match={match} _sendSMS={this._sendSMS} deleteMatch={this.deleteMatch} _addAttendee={this._addAttendee} match={match}/>
@@ -103,6 +119,10 @@ class MatchInfo extends React.Component{
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps', nextProps);
+  }
+
   componentDidMount() {
     var ownerImage = this.props.match.get('owner').imageUrl
     if(ownerImage){
@@ -123,8 +143,7 @@ class MatchInfo extends React.Component{
    var currentUserId = User.currentUser().get('objectId');
    var modelOwnerId = this.props.match.get('owner').objectId;
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
-   var matchOwner = User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username');
-   console.log('owner', matchOwner);
+
 
    var deleteIcon = <i className="fa fa-trash" id="delete_match" aria-hidden="true" onClick={(e) => this.props.deleteMatch(this.props.match)}/>
 
@@ -155,10 +174,6 @@ class MatchInfo extends React.Component{
            </div>
        </div>
    </div>
-
-
-
-
 
    <div className="well user_listing">
      <div className="caption text-center">
