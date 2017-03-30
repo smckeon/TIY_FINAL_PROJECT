@@ -803,23 +803,26 @@ class MatchInfo extends React.Component{
    var deleteAccess = currentUserId == modelOwnerId ? true : false;
 
 
-   var deleteIcon = React.createElement("i", {className: "fa fa-trash", id: "delete_match", "aria-hidden": "true", onClick: (e) => this.props.deleteMatch(this.props.match)})
+   var deleteIcon = React.createElement("i", {className: "fa fa-times fa-2x", id: "delete_match", "aria-hidden": "true", onClick: (e) => this.props.deleteMatch(this.props.match)})
 
-   var contactIcon = React.createElement("i", {className: "fa fa-mobile", id: "text_alert", "aria-hidden": "true", onClick: (e) => this.props._sendSMS(this.props.match)})
+   var contactIcon = React.createElement("i", {className: "fa fa-mobile fa-3x", id: "text_alert", "aria-hidden": "true", onClick: (e) => this.props._sendSMS(this.props.match)})
 
    return (
-   React.createElement("div", {className: "match-listing col-md-4"}, 
+   React.createElement("div", {className: "match-listing col-sm-6 col-md-4"}, 
    React.createElement("div", {className: "well"}, 
-      deleteAccess ? React.createElement("div", null, " ", deleteIcon, " ", contactIcon, " ") : null, 
-   React.createElement("br", null), 
+     deleteAccess ? React.createElement("div", {className: "icon alert-icon"}, " ", contactIcon, " ") : null, 
+     deleteAccess ? React.createElement("div", {className: "icon delete-icon"}, " ", deleteIcon, " ") : null, 
 
    React.createElement("a", {"data-toggle": "modal", "data-target": '.bs-example-modal-lg' + this.props.match.cid}, React.createElement("img", {src:  this.state.image, className: "center-block match_photo"})), 
    React.createElement("p", {className: "text-center"}, "Click on image to view who's going!"), 
 
+
+   React.createElement("br", null), 
+
    React.createElement("div", {className: 'modal fade bs-example-modal-lg' + this.props.match.cid, tabIndex: "-1", role: "dialog", "aria-labelledby": "myLargeModalLabel"}, 
        React.createElement("div", {className: "modal-dialog modal-md"}, 
            React.createElement("div", {className: "modal-content bio-modal"}, 
-               React.createElement("div", {className: "col-sm-12 col-md-3"}, 
+               React.createElement("div", {className: "col-sm-4 col-md-3"}, 
                    React.createElement("img", {src:  this.state.image})
                ), 
                React.createElement("div", {className: "col-sm-12 col-md-9"}, 
