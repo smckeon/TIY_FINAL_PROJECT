@@ -58,13 +58,13 @@ class AccountInfoContainer extends React.Component {
    return (
      React.createElement(BaseLayout, null, 
        React.createElement("div", {className: "container acct_info"}, 
-         React.createElement("div", {className: "col-md-push-2 col-md-8"}, 
+         React.createElement("div", {className: "col-mcol-md-8"}, 
          React.createElement("div", {className: "row"}, 
            React.createElement("div", {className: "well"}, 
            React.createElement("form", {className: "form-horizontal", encType: "multipart/form-data"}, 
              React.createElement("fieldset", null, 
                React.createElement("legend", null, "Account Information"), 
-                 React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
+                 React.createElement("div", {className: "col-md-push-4 col-md-4"}, 
                    React.createElement(ImageUpload, {user: this.state.user, handleImage: this.handleImage})
                     ), 
                  React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
