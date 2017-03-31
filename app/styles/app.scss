@@ -24,11 +24,6 @@ $tan: #d0c4b1;
   font-family: $sans;
 }
 
-* {
- @media screen and (max-width: 321px){
-   max-width: 100vw;
- }
-}
 
 // Base Layout
 
@@ -38,19 +33,31 @@ $tan: #d0c4b1;
 
 .homebg {
     position: absolute;
+    // height: 100vh;
+    // width: 100vw;
+    // top: 0;
+    // bottom: 0;
+    z-index: -1;
+}
+
+.homebg {
+  @media screen and (max-width: 400px){
+    position: absolute;
     height: 100vh;
     width: 100vw;
     top: 0;
     bottom: 0;
     z-index: -1;
+  }
 }
 
 #nav-dropdown {
  @media screen and (max-width: 768px){
    position: relative;
    left: 85vw;
-   bottom: 38px;
+   bottom: 40px;
    border: 1px solid white;
+   padding: 6px;
    display: inline;
    border-radius: 5px;
  }
@@ -60,7 +67,7 @@ $tan: #d0c4b1;
  @media screen and (max-width: 585px){
    position: relative;
    left: 80vw;
-   bottom: 38px;
+   bottom: 40px;
    border: 1px solid white;
    display: inline;
    border-radius: 5px;
@@ -71,7 +78,7 @@ $tan: #d0c4b1;
  @media screen and (max-width: 430px){
    position: relative;
    left: 70vw;
-   bottom: 38px;
+   bottom: 40px;
    border: 1px solid white;
    display: inline;
    border-radius: 5px;
@@ -83,6 +90,7 @@ $tan: #d0c4b1;
    display: none;
  }
 }
+
 
 .auth-header {
  @media screen and (max-width: 739px){
@@ -97,9 +105,29 @@ $tan: #d0c4b1;
     background-color: $green;
   }
 
-.dropdown-menu {
+.dropdown-item {
+  text-align: center;
+  color: white;
     background-color: $tan;
   }
+
+.dropdown-menu{
+ @media screen and (max-width: 768px){
+   bottom: 34px;
+   position: relative !important;
+   background-color: $tan;
+ }
+}
+
+.navbar {
+  z-index: 1;
+}
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+     @media screen and (max-width: 374px){
+     background-color: $tan;
+   }
+}
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: $tan;
@@ -111,16 +139,20 @@ $tan: #d0c4b1;
 
 #nav-dropdown {
   color: white;
-
 }
 
 #header-nav {
+  height: 0px;
   border-radius: 0px;
   margin-bottom: 0px;
   border: none;
   background-color: #2A3914;
 }
 
+#header-nav{
+@media screen and (max-width: 768px){
+  }
+}
 
 .signup-btn {
   position: relative;
