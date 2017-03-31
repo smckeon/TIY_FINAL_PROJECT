@@ -5817,12 +5817,12 @@ img {
 @media screen and (max-width: 401px) {
   #signup_btn {
     top: -50px;
-    left: 225px; } }
+    left: 210px; } }
 
 @media screen and (max-width: 320px) {
   #signup_btn {
     top: -50px;
-    left: 190px; } }
+    left: 202px; } }
 
 @media screen and (max-width: 585px) {
   #nav-dropdown {
