@@ -5795,6 +5795,35 @@ img {
     display: inline;
     border-radius: 5px; } }
 
+#signup_btn {
+  position: relative;
+  top: 8px; }
+
+@media screen and (max-width: 768px) {
+  #signup_btn {
+    top: -48px;
+    left: 550px; } }
+
+@media screen and (max-width: 680px) {
+  #signup_btn {
+    top: -48px;
+    left: 400px; } }
+
+@media screen and (max-width: 525px) {
+  #signup_btn {
+    top: -48px;
+    left: 280px; } }
+
+@media screen and (max-width: 401px) {
+  #signup_btn {
+    top: -50px;
+    left: 225px; } }
+
+@media screen and (max-width: 320px) {
+  #signup_btn {
+    top: -50px;
+    left: 190px; } }
+
 @media screen and (max-width: 585px) {
   #nav-dropdown {
     position: relative;
@@ -5827,7 +5856,6 @@ img {
 
 .dropdown-item {
   text-align: center;
-  color: white;
   background-color: #d0c4b1; }
 
 @media screen and (max-width: 768px) {
@@ -5837,6 +5865,7 @@ img {
     background-color: #d0c4b1; } }
 
 .navbar {
+  min-height: 52px;
   z-index: 1; }
 
 @media screen and (max-width: 374px) {
@@ -5858,10 +5887,6 @@ img {
   margin-bottom: 0px;
   border: none;
   background-color: #2A3914; }
-
-.signup-btn {
-  position: relative;
-  top: 8px; }
 
 .text_backsplash {
   background-color: rgba(26, 21, 21, 0.3);
@@ -5900,6 +5925,10 @@ img {
     left: 200px; } }
 .auth_contain {
   padding-top: 2%; }
+
+#matches_location {
+  font-style: italic;
+  color: #3c763d; }
 
 .match_photo {
   width: 100%;
@@ -6004,6 +6033,10 @@ img {
   margin-top: 2%; }
 
 .acct_info {
-  margin-top: 2%; }
+  margin-top: 2%;
+  min-height: 620px; }
+
+.text_backsplash > img {
+  border-radius: 5px; }
 
 /*# sourceMappingURL=app.css.map */

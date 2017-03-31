@@ -58,13 +58,13 @@ class AccountInfoContainer extends React.Component {
    return (
      React.createElement(BaseLayout, null, 
        React.createElement("div", {className: "container acct_info"}, 
-         React.createElement("div", {className: "col-mcol-md-8"}, 
+         React.createElement("div", {className: "col-md-push-2 col-md-8"}, 
          React.createElement("div", {className: "row"}, 
            React.createElement("div", {className: "well"}, 
            React.createElement("form", {className: "form-horizontal", encType: "multipart/form-data"}, 
              React.createElement("fieldset", null, 
                React.createElement("legend", null, "Account Information"), 
-                 React.createElement("div", {className: "col-md-push-4 col-md-4"}, 
+                 React.createElement("div", {className: "col-md-push-2 col-md-4"}, 
                    React.createElement(ImageUpload, {user: this.state.user, handleImage: this.handleImage})
                     ), 
                  React.createElement("div", {className: "col-md-push-3 col-md-4"}, 
@@ -73,7 +73,19 @@ class AccountInfoContainer extends React.Component {
              )
            )
            )
+           ), 
+         React.createElement("div", {className: "acct_photos"}, 
+         React.createElement("div", {className: "col-md-push-1 col-md-6"}, 
+           React.createElement("div", {className: "text_backsplash"}, 
+             React.createElement("img", {src: "./images/sean.jpg"})
            )
+          ), 
+          React.createElement("div", {className: "col-md-pull-1 col-md-6 col-md-pull-1"}, 
+            React.createElement("div", {className: "text_backsplash"}, 
+              React.createElement("img", {src: "./images/pickup1.jpg"})
+            )
+           )
+         )
        )
      )
    )
@@ -598,7 +610,7 @@ class Header extends React.Component{
 class SignupNavItem extends React.Component{
   render(){
     return(
-      React.createElement("a", {href: "#/auth", className: "btn btn-success signup-btn", role: "button"}, 
+      React.createElement("a", {href: "#/auth", className: "btn btn-success signup-btn", id: "signup_btn", role: "button"}, 
         "Login  /  Signup"
       )
     )
@@ -919,7 +931,7 @@ class WelcomeContainer extends React.Component {
         React.createElement("div", {className: "well user_welcome"}, 
           React.createElement("div", {className: "container"}, 
             React.createElement("h2", null, "Match Browser for ", User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username'), "   "), 
-            React.createElement("h4", null, "Current games are listed below. If no games are listed, create one!")
+            React.createElement("h4", null, "Matches for ", React.createElement("span", {id: "matches_location"}, "Greenville, SC"), ". If no games are listed, create one!")
           )
         ), 
         React.createElement(MatchListing, null)
