@@ -46,7 +46,7 @@ class Header extends React.Component{
 class SignupNavItem extends React.Component{
   render(){
     return(
-      <a href="#/auth" className="btn btn-success signup-btn" role="button">
+      <a href="#/auth" className="btn btn-success signup-btn" id="signup_btn" role="button">
         Login  /  Signup
       </a>
     )

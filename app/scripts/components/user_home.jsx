@@ -16,7 +16,7 @@ class WelcomeContainer extends React.Component {
         <div className="well user_welcome">
           <div className="container">
             <h2>Match Browser for {User.currentUser() ? User.currentUser().get('name') : User.currentUser().get('username')}   </h2>
-            <h4>Current games are listed below. If no games are listed, create one!</h4>
+            <h4>Matches for <span id="matches_location">Greenville, SC</span>. If no games are listed, create one!</h4>
           </div>
         </div>
         <MatchListing />

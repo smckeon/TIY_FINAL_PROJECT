@@ -33,10 +33,6 @@ $tan: #d0c4b1;
 
 .homebg {
     position: absolute;
-    // height: 100vh;
-    // width: 100vw;
-    // top: 0;
-    // bottom: 0;
     z-index: -1;
 }
 
@@ -61,6 +57,46 @@ $tan: #d0c4b1;
    display: inline;
    border-radius: 5px;
  }
+}
+
+#signup_btn {
+  position: relative;
+  top: 8px;
+}
+
+#signup_btn {
+  @media screen and (max-width: 768px){
+    top: -48px;
+    left: 550px;
+  }
+}
+
+#signup_btn {
+  @media screen and (max-width: 680px){
+    top: -48px;
+    left: 400px;
+  }
+}
+
+#signup_btn {
+  @media screen and (max-width: 525px){
+    top: -48px;
+    left: 280px;
+  }
+}
+
+#signup_btn {
+  @media screen and (max-width: 401px){
+    top: -50px;
+    left: 225px;
+  }
+}
+
+#signup_btn {
+  @media screen and (max-width: 320px){
+    top: -50px;
+    left: 190px;
+  }
 }
 
 #nav-dropdown {
@@ -106,8 +142,8 @@ $tan: #d0c4b1;
   }
 
 .dropdown-item {
-  text-align: center;
-  color: white;
+    text-align: center;
+    // color: white;
     background-color: $tan;
   }
 
@@ -120,6 +156,7 @@ $tan: #d0c4b1;
 }
 
 .navbar {
+  min-height: 52px;
   z-index: 1;
 }
 
@@ -153,12 +190,6 @@ $tan: #d0c4b1;
 @media screen and (max-width: 768px){
   }
 }
-
-.signup-btn {
-  position: relative;
-  top: 8px;
-}
-
 
 .text_backsplash {
   background-color:rgba(26, 21, 21, 0.3);
@@ -212,6 +243,11 @@ $tan: #d0c4b1;
 }
 
 // Match Browser
+
+#matches_location {
+  font-style: italic;
+  color: $green;
+}
 
 .match_photo {
   width: 100%;
@@ -312,8 +348,6 @@ $tan: #d0c4b1;
  }
 }
 
-
-
 .user_listing {
   margin-top: 2%;
   margin-bottom: 0px;
@@ -346,4 +380,9 @@ $tan: #d0c4b1;
 
 .acct_info {
   margin-top: 2%;
+  min-height: 620px;
+}
+
+.text_backsplash > img {
+  border-radius: 5px;
 }

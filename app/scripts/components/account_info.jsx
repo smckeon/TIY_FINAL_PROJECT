@@ -56,13 +56,13 @@ class AccountInfoContainer extends React.Component {
    return (
      <BaseLayout>
        <div className="container acct_info">
-         <div className="col-mcol-md-8">
+         <div className="col-md-push-2 col-md-8">
          <div className="row">
            <div className="well">
            <form className="form-horizontal" encType="multipart/form-data">
              <fieldset>
                <legend>Account Information</legend>
-                 <div className="col-md-push-4 col-md-4">
+                 <div className="col-md-push-2 col-md-4">
                    <ImageUpload user={this.state.user} handleImage={this.handleImage}/>
                     </div>
                  <div className="col-md-push-3 col-md-4">
@@ -72,6 +72,18 @@ class AccountInfoContainer extends React.Component {
            </form>
            </div>
            </div>
+         <div className="acct_photos">
+         <div className="col-md-push-1 col-md-6">
+           <div className="text_backsplash">
+             <img src="./images/sean.jpg" />
+           </div>
+          </div>
+          <div className="col-md-pull-1 col-md-6 col-md-pull-1">
+            <div className="text_backsplash">
+              <img src="./images/pickup1.jpg" />
+            </div>
+           </div>
+         </div>
        </div>
      </div>
    </BaseLayout>
